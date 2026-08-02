@@ -29,18 +29,28 @@ defined( 'ABSPATH' ) || exit;
 
 $isudev_schema_extended_autoload = __DIR__ . '/vendor/autoload.php';
 
-if ( \is_readable( $isudev_schema_extended_autoload ) ) {
+// A bundled vendor/ means this is a release-zip install. Composer-managed sites have none, and
+// there Composer — not the update checker — owns the version.
+$isudev_schema_extended_self_updates = \is_readable( $isudev_schema_extended_autoload );
+
+if ( $isudev_schema_extended_self_updates ) {
 	require_once $isudev_schema_extended_autoload;
 }
 
 // Update checks only matter in wp-admin and during cron, so the front end stays untouched.
-if ( \class_exists( PucFactory::class ) && ( \is_admin() || \wp_doing_cron() ) ) {
+if ( $isudev_schema_extended_self_updates && \class_exists( PucFactory::class ) && ( \is_admin() || \wp_doing_cron() ) ) {
 	$isudev_schema_extended_updater = PucFactory::buildUpdateChecker(
 		'https://github.com/IsuDevelopment/isudev-schema-extender/',
 		__FILE__,
 		'isudev-schema-extended'
 	);
-	$isudev_schema_extended_updater->getVcsApi()->enableReleaseAssets();
+	$isudev_schema_extended_vcs_api = $isudev_schema_extended_updater->getVcsApi();
+
+	// The built zip is a release asset, not the GitHub source archive. Checked by method instead of
+	// class, because PUC exposes its API classes under a version-specific namespace.
+	if ( \method_exists( $isudev_schema_extended_vcs_api, 'enableReleaseAssets' ) ) {
+		$isudev_schema_extended_vcs_api->enableReleaseAssets();
+	}
 }
 
 require_once __DIR__ . '/includes/service/class-meta-fields.php';
