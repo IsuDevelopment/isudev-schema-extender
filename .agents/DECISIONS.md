@@ -32,6 +32,18 @@ repeater. No silent data loss, no automatic guessing of area types.
 `OfferCatalog` describes the visible scope of a service. Emitting prices or ratings without matching
 on-page content is a structured-data violation, so those fields are intentionally unsupported.
 
-## 8. `build/` is generated, not committed
-The editor bundle is produced by `@wordpress/scripts` in CI and shipped inside the release zip. This
-keeps diffs readable and prevents stale bundles in the repo.
+## 8. `build/` is committed
+The plugin is also installed through Composer straight from the git repository (Kormas and other
+sites), and a git archive cannot run a build step — so the compiled bundle has to be in the tree.
+Consequence: **run `npm run build` and commit `build/` whenever `src/` changes**, otherwise
+Composer-installed sites ship a stale sidebar. `.gitattributes` keeps `src/` and dev config out of
+Composer/GitHub archives.
+
+## 9. Two install channels, one at a time
+- **Composer (`type: vcs`)** — the site's `composer.json` owns the version; the plugin's own
+  `vendor/` is absent, so Plugin Update Checker never boots (guarded by `class_exists()`) and cannot
+  fight Composer.
+- **Release zip + PUC** — for sites that are not Composer-managed; `vendor/` ships inside the zip
+  and the plugin self-updates from GitHub Releases.
+
+Never mix them on one site.

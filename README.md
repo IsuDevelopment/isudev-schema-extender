@@ -25,12 +25,38 @@ into valid Schema.org output on the server.
 
 ## Installation
 
+Pick one channel per site — do not mix them.
+
+### Composer (for Composer-managed sites)
+
+```json
+{
+	"repositories": {
+		"isudev-schema-extended": {
+			"type": "vcs",
+			"url": "https://github.com/IsuDevelopment/isudev-schema-extender"
+		}
+	},
+	"require": {
+		"isudev/schema-extended": "^0.2.5"
+	}
+}
+```
+
+```bash
+composer require isudev/schema-extended:^0.2.5
+```
+
+`composer/installers` puts it in the site's plugin directory (`schema-extended`). Composer owns the
+version here: the plugin's own `vendor/` is absent, so the self-updater stays off and Composer is
+the only thing that moves the version. Use `dev-main` instead of `^0.2.5` to track the branch.
+
+### Release zip (for everything else)
+
 Download `isudev-schema-extended-<version>.zip` from
 [Releases](https://github.com/IsuDevelopment/isudev-schema-extender/releases) and install it in
-**Plugins → Add New → Upload Plugin**.
-
-Updates are automatic afterwards: the plugin checks this repository's releases from wp-admin and
-cron, and appears in the normal WordPress update screen.
+**Plugins → Add New → Upload Plugin**. Updates are automatic afterwards: the plugin checks this
+repository's releases from wp-admin and cron, and appears in the normal WordPress update screen.
 
 ## Editor fields
 

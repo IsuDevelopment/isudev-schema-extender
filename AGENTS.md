@@ -42,8 +42,9 @@ composer lint:php       # PHPCS, WordPress Coding Standards
 php -l <file>           # quick syntax check
 ```
 
-`build/`, `vendor/` and `node_modules/` are generated and git-ignored. CI rebuilds them for the
-release zip.
+`vendor/` and `node_modules/` are git-ignored. **`build/` is committed** — it is what
+Composer-installed sites run, so after touching `src/` you must `npm run build` and commit the
+result in the same change.
 
 ## Agent flow
 
