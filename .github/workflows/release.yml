@@ -1,0 +1,100 @@
+name: Build & Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'isudev-schema-extended.php'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build and release plugin
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Read version from plugin header
+        id: version
+        run: |
+          VERSION=$(grep -m1 'Version:' isudev-schema-extended.php | awk '{print $NF}' | tr -d '[:space:]')
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Check if tag already exists
+        id: tag_check
+        run: |
+          if git rev-parse "refs/tags/v${{ steps.version.outputs.version }}" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create and push tag
+        if: steps.tag_check.outputs.exists == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag "v${{ steps.version.outputs.version }}"
+          git push origin "v${{ steps.version.outputs.version }}"
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          tools: composer:v2
+
+      - name: Install Composer dependencies
+        run: composer install --no-dev --optimize-autoloader
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Build editor assets
+        run: |
+          npm ci
+          npm run build
+
+      - name: Build plugin zip
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          mkdir -p dist/isudev-schema-extended
+          rsync -a --exclude-from=- ./ dist/isudev-schema-extended/ <<'EOF'
+          .git
+          .github
+          .agents
+          dist
+          node_modules
+          src
+          *.zip
+          .gitignore
+          .editorconfig
+          .eslintrc.js
+          .prettierrc.js
+          phpcs.xml.dist
+          package.json
+          package-lock.json
+          composer.lock
+          AGENTS.md
+          CLAUDE.md
+          GEMINI.md
+          EOF
+          cd dist && zip -r "../isudev-schema-extended-${VERSION}.zip" isudev-schema-extended
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          name: v${{ steps.version.outputs.version }}
+          files: isudev-schema-extended-${{ steps.version.outputs.version }}.zip
+          generate_release_notes: true

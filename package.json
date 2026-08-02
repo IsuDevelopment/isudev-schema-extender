@@ -1,0 +1,24 @@
+{
+	"name": "@isudev/schema-extended",
+	"version": "0.2.5",
+	"description": "Editor controls for configurable entities in the Yoast SEO schema graph.",
+	"license": "GPL-3.0-or-later",
+	"private": true,
+	"engines": {
+		"node": "20",
+		"npm": ">=10",
+		"yarn": "Please use npm"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^31.3.0",
+		"typescript": "^5.9.3"
+	},
+	"scripts": {
+		"start": "wp-scripts start",
+		"build": "wp-scripts build",
+		"lint:js": "wp-scripts lint-js src",
+		"lint:css": "wp-scripts lint-style \"src/**/*.css\"",
+		"lint:format": "wp-scripts format --check src",
+		"format": "wp-scripts format src"
+	}
+}
