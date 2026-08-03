@@ -10,11 +10,12 @@ script — Yoast stays the only schema output.
 autoload (Plugin Update Checker, admin/cron only), requires the classes and calls
 `Plugin::register()`.
 
-`Plugin::register()` wires three hooks:
+`Plugin::register()` wires four callbacks across three hooks:
 
 | Hook | Callback | Purpose |
 | --- | --- | --- |
 | `init` | `Service\Meta_Fields::register` | Register private REST post meta |
+| `init` | `Custom\Meta_Fields::register` | Register Custom Schema toggle + JSON source |
 | `enqueue_block_editor_assets` | `Editor_Sidebar::enqueue` | Load `build/index.js` + CSS |
 | `plugins_loaded` (20) | `Plugin::register_yoast_integration` | Load graph code only if Yoast is active |
 
@@ -28,6 +29,8 @@ page render
   → Yoast builds its graph
   → wpseo_schema_graph_pieces  → Schema_Integration::add_service_piece()
                                  → Service_Schema_Piece::is_needed() / generate()
+                              → Custom\Schema_Integration::add_custom_piece()
+                                 → Custom_Schema_Piece::is_needed() / generate()
   → wpseo_schema_webpage       → Schema_Integration::link_webpage_to_service()
                                  → WebPage.about → { "@id": "<canonical>#service" }
 ```
@@ -35,6 +38,11 @@ page render
 `link_webpage_to_service()` appends to `about` without overwriting existing values and never
 touches FAQ `mainEntity`. Provider, primary image, language and canonical are reused from Yoast's
 `Meta_Tags_Context` — the plugin does not invent identifiers.
+
+The Custom piece parses one stored JSON source into up to 20 graph nodes. It accepts one object, a
+node list or an outer `@graph`, resolves context placeholders and rejects invalid input or
+Yoast-owned top-level IDs. It returns an empty list on any error, so a malformed custom source
+cannot partially alter the public graph.
 
 ## Editor flow
 
@@ -44,6 +52,8 @@ PluginSidebar "Schema Extended" (src/index.js)
       → core/editor meta via useSelect/useDispatch
       → TypedNameRepeater (areas)   → _isudev_yoast_service_areas
       → OfferRepeater (catalog)     → _isudev_yoast_service_offers
+  → CustomSchemaPanel (src/features/custom/custom-schema-panel.js)
+      → immediate JSON diagnostics  → _isudev_schema_custom_json
 ```
 
 The sidebar only mounts for post types returned by `Meta_Fields::get_supported_post_types()`
@@ -64,6 +74,8 @@ All keys are private (`_`-prefixed), REST-exposed, sanitized on write, `edit_pos
 | `_isudev_yoast_service_brands` | string | Newline/comma separated |
 | `_isudev_yoast_service_catalog_name` | string | `OfferCatalog.name` |
 | `_isudev_yoast_service_offers` | array | `{ name, description }`, max 20, `name` required |
+| `_isudev_schema_custom_enabled` | bool | Master switch for generic custom graph nodes |
+| `_isudev_schema_custom_json` | string | Editable JSON source, max 100,000 characters |
 
 ## Extension points
 
@@ -71,10 +83,16 @@ All keys are private (`_`-prefixed), REST-exposed, sanitized on write, `edit_pos
 | --- | --- |
 | `isudev_schema_extended_service_post_types` | Add post types for the Service feature |
 | `isudev_yoast_services_post_types` | Legacy alias, applied first — keep working |
+| `isudev_schema_extended_custom_post_types` | Add post types for the Custom Schema feature |
 
-## Adding a new entity feature
+## Entity extension strategy
 
-1. `includes/<feature>/` — meta fields, schema piece, graph integration.
-2. `src/features/<feature>/` — the editor panel.
-3. Compose the panel into the sidebar in `src/index.js`; require the PHP from `Plugin`.
-4. Reusable controls go to `src/components/`, never into the feature folder.
+Use Custom Schema for less common arbitrary Schema.org nodes. Add a typed sibling feature only
+when a recurring entity needs a safer guided UI, derived Yoast relationships or domain-specific
+validation. Reusable controls go to `src/components/`, never into a feature folder.
+
+## External integration
+
+`Custom\Integration_API` is the stable boundary for another plugin. It provides authorized read
+and update operations plus write-free validation. MCP or REST adapters belong outside this plugin
+and must not couple themselves to the private meta keys.

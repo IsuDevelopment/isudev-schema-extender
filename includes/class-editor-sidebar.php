@@ -9,6 +9,7 @@ declare( strict_types = 1 );
 
 namespace IsuDev\SchemaExtended;
 
+use IsuDev\SchemaExtended\Custom\Meta_Fields as Custom_Meta_Fields;
 use IsuDev\SchemaExtended\Service\Meta_Fields;
 use WP_Screen;
 
@@ -24,7 +25,11 @@ final class Editor_Sidebar {
 	public static function enqueue(): void {
 		$screen = \get_current_screen();
 
-		if ( ! $screen instanceof WP_Screen || ! \in_array( $screen->post_type, Meta_Fields::get_supported_post_types(), true ) ) {
+		$supported_post_types = \array_unique(
+			\array_merge( Meta_Fields::get_supported_post_types(), Custom_Meta_Fields::get_supported_post_types() )
+		);
+
+		if ( ! $screen instanceof WP_Screen || ! \in_array( $screen->post_type, $supported_post_types, true ) ) {
 			return;
 		}
 

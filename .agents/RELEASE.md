@@ -46,4 +46,4 @@ place `build/` exists — and get no `vendor/`, so the update checker never boot
 the version. Updating such a site is `composer update isudev/schema-extended`.
 
 Requiring `dev-main` gives a plugin without compiled assets and is not supported: always pin a
-tagged constraint (`^0.2.5`).
+tagged constraint (`^0.3.0`).

@@ -1,6 +1,6 @@
 {
 	"name": "@isudev/schema-extended",
-	"version": "0.2.5",
+	"version": "0.3.0",
 	"description": "Editor controls for configurable entities in the Yoast SEO schema graph.",
 	"license": "GPL-3.0-or-later",
 	"private": true,
@@ -18,7 +18,7 @@
 		"build": "wp-scripts build",
 		"lint:js": "wp-scripts lint-js src",
 		"lint:css": "wp-scripts lint-style \"src/**/*.css\"",
-		"lint:format": "wp-scripts format --check src",
-		"format": "wp-scripts format src"
+		"lint:format": "prettier --check \"src/**/*.{js,css}\"",
+		"format": "prettier --write \"src/**/*.{js,css}\""
 	}
 }

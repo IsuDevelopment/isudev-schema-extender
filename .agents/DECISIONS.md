@@ -47,3 +47,16 @@ and dev config out of Composer/GitHub archives.
   and the plugin self-updates from GitHub Releases.
 
 Never mix them on one site.
+
+## 10. Generic Custom Schema is a validated graph piece
+Writing a PHP module and editor form for every Schema.org type does not scale and delays useful
+markup. The advanced editor therefore accepts arbitrary JSON nodes and returns them from one Yoast
+graph piece. It does not print raw JSON, own `@context` or patch Yoast's primary IDs. Invalid input
+fails closed as a whole but remains editable, which protects the public graph without destroying
+an editor's draft. Typed modules remain appropriate where guided fields or stronger semantic rules
+justify their maintenance cost.
+
+## 11. External automation uses a public PHP contract
+The future MCP adapter belongs to the bridge plugin, but it must not know Schema Extended's meta
+keys. `Custom\Integration_API` owns capability checks, validation and persistence so storage can
+change without breaking external tools.

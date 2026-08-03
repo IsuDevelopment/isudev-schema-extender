@@ -1,6 +1,7 @@
 /**
  * Internal dependencies
  */
+import CustomSchemaPanel from './features/custom/custom-schema-panel';
 import ServicePanel from './features/service/service-panel';
 import './editor.css';
 
@@ -17,6 +18,7 @@ const SchemaExtendedSidebar = () => (
 		icon={ schemaIcon }
 	>
 		<ServicePanel />
+		<CustomSchemaPanel />
 	</PluginSidebar>
 );
 

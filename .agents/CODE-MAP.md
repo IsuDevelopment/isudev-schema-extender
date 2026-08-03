@@ -12,6 +12,11 @@ Where to change what. Update this table whenever a file is added, renamed or rem
 | `includes/service/class-meta-fields.php` | Service meta keys, registration, sanitization, supported post types, legacy area migration | New field, new sanitization rule, post-type support |
 | `includes/service/class-schema-integration.php` | `wpseo_schema_graph_pieces` + `wpseo_schema_webpage` filters, `about` linking | How the entity attaches to Yoast's graph |
 | `includes/service/class-service-schema-piece.php` | `is_needed()` / `generate()`, JSON-LD for the `Service` node, `get_schema_id()` | JSON-LD output shape |
+| `includes/custom/class-meta-fields.php` | Custom toggle/source meta, REST registration, source sanitization | Custom data storage or supported post types |
+| `includes/custom/class-graph-parser.php` | JSON shapes, structural validation, limits and placeholder replacement | Custom Schema input contract |
+| `includes/custom/class-custom-schema-piece.php` | Yoast context placeholders, reserved IDs and graph output | Custom nodes in the Yoast graph |
+| `includes/custom/class-schema-integration.php` | Registers the generic graph piece | Custom Yoast collector integration |
+| `includes/custom/class-integration-api.php` | Capability-protected read, validate and update contract | External bridge/MCP integration |
 
 ## JavaScript (`src/`, built into `build/`)
 
@@ -19,6 +24,7 @@ Where to change what. Update this table whenever a file is added, renamed or rem
 | --- | --- | --- |
 | `src/index.js` | Registers the `Schema Extended` PluginSidebar, composes feature panels | New feature panel, sidebar identity |
 | `src/features/service/service-panel.js` | Service fields, meta read/write via `core/editor` | Service editor UI |
+| `src/features/custom/custom-schema-panel.js` | Toggle, JSON editor and immediate diagnostics | Custom Schema editor UI |
 | `src/components/typed-name-repeater.js` | Reusable `{ type, name }` repeater | Shared repeater behaviour — keep it domain-agnostic |
 | `src/components/offer-repeater.js` | Reusable offer/catalog item repeater | Shared catalog row behaviour |
 | `src/editor.css` | Sidebar styling | Sidebar layout only |

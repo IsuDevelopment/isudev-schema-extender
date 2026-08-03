@@ -44,3 +44,19 @@
 .isudev-offer-repeater__item-body .components-button {
 	justify-self: start;
 }
+
+.isudev-custom-schema__source textarea {
+	min-height: 320px;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	font-size: 12px;
+	line-height: 1.5;
+	tab-size: 2;
+}
+
+.isudev-custom-schema__help {
+	margin: -12px 0 0;
+	color: #757575;
+	font-size: 12px;
+	line-height: 1.5;
+	overflow-wrap: anywhere;
+}

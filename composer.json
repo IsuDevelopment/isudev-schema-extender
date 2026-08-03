@@ -3,7 +3,7 @@
 	"description": "Extends the Yoast SEO schema graph with configurable, page-level entities.",
 	"type": "wordpress-plugin",
 	"license": "GPL-3.0-or-later",
-	"version": "0.2.5",
+	"version": "0.3.0",
 	"require": {
 		"php": ">=8.4",
 		"yahnis-elsts/plugin-update-checker": "^5.6"
