@@ -48,8 +48,10 @@ composer require isudev/schema-extended:^0.2.5
 ```
 
 `composer/installers` puts it in the site's plugin directory (`schema-extended`). Composer owns the
-version here: the plugin's own `vendor/` is absent, so the self-updater stays off and Composer is
-the only thing that moves the version. Use `dev-main` instead of `^0.2.5` to track the branch.
+version here: the plugin's own `vendor/` is absent, so the self-updater stays off.
+
+Always use a tagged constraint. Compiled editor assets are built by CI and exist only in release
+tags, so `dev-main` would install a plugin without its sidebar.
 
 ### Release zip (for everything else)
 
