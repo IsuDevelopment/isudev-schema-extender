@@ -1,0 +1,174 @@
+{
+    "translation-revision-date": "2026-08-11T09:55:43+00:00",
+    "generator": "WP-CLI\/2.11.0",
+    "source": "build\/index.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "pl_PL",
+                "plural-forms": "nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);"
+            },
+            "Security system installation": [
+                "Monta\u017c systemu monitoringu"
+            ],
+            "Paste Schema.org JSON to get started.": [
+                "Wklej JSON Schema.org, aby rozpocz\u0105\u0107."
+            ],
+            "The JSON exceeds the allowed size.": [
+                "JSON przekracza dozwolony rozmiar."
+            ],
+            "Invalid JSON: %s": [
+                "Niepoprawny JSON: %s"
+            ],
+            "The root value must be an object, a node array or an @graph object.": [
+                "G\u0142\u00f3wn\u0105 warto\u015bci\u0105 musi by\u0107 obiekt, lista w\u0119z\u0142\u00f3w albo obiekt @graph."
+            ],
+            "Only the Schema.org context is allowed.": [
+                "Dozwolony jest wy\u0142\u0105cznie kontekst Schema.org."
+            ],
+            "@graph must contain at least one node.": [
+                "@graph musi zawiera\u0107 co najmniej jeden w\u0119ze\u0142."
+            ],
+            "You may add at most %d nodes.": [
+                "Mo\u017cesz doda\u0107 maksymalnie %d w\u0119z\u0142\u00f3w."
+            ],
+            "Node %d must be a JSON object.": [
+                "W\u0119ze\u0142 %d musi by\u0107 obiektem JSON."
+            ],
+            "Node %d contains a nested @context.": [
+                "W\u0119ze\u0142 %d zawiera zagnie\u017cd\u017cony @context."
+            ],
+            "Node %d contains an unknown placeholder.": [
+                "W\u0119ze\u0142 %d zawiera nieznany placeholder."
+            ],
+            "Node %d requires a valid @type.": [
+                "W\u0119ze\u0142 %d wymaga poprawnego @type."
+            ],
+            "Node %d has an invalid @id.": [
+                "W\u0119ze\u0142 %d ma niepoprawne @id."
+            ],
+            "Every node must have a unique @id.": [
+                "Ka\u017cdy w\u0119ze\u0142 musi mie\u0107 unikalne @id."
+            ],
+            "The JSON is valid. Recognized nodes: %d.": [
+                "JSON jest poprawny. Rozpoznano w\u0119z\u0142y: %d."
+            ],
+            "Custom Schema is enabled, but the JSON is empty. Nothing will be published.": [
+                "Niestandardowy schemat jest w\u0142\u0105czony, ale JSON jest pusty. Nic nie zostanie opublikowane."
+            ],
+            "Custom Schema": [
+                "Niestandardowe Schema"
+            ],
+            "Add custom nodes to the Yoast graph": [
+                "Dodaj w\u0142asne w\u0119z\u0142y do grafu Yoast"
+            ],
+            "Valid nodes will be added to the Yoast graph.": [
+                "Poprawne w\u0119z\u0142y zostan\u0105 do\u0142\u0105czone do grafu Yoast."
+            ],
+            "The JSON remains saved but is not published.": [
+                "JSON pozostaje zapisany, ale nie jest publikowany."
+            ],
+            "JSON Schema.org": [
+                "JSON Schema.org"
+            ],
+            "Paste a single object, a node array or a complete @graph object. Yoast provides @context.": [
+                "Wklej pojedynczy obiekt, list\u0119 w\u0119z\u0142\u00f3w albo pe\u0142ny obiekt @graph. @context zapewnia Yoast."
+            ],
+            "Available placeholders: {{canonical}}, {{webpage_id}}, {{site_url}}, {{website_id}}, {{organization_id}}, {{primary_image_id}}.": [
+                "Dost\u0119pne placeholdery: {{canonical}}, {{webpage_id}}, {{site_url}}, {{website_id}}, {{organization_id}}, {{primary_image_id}}."
+            ],
+            "Clear configuration": [
+                "Wyczy\u015b\u0107 konfiguracj\u0119"
+            ],
+            "City": [
+                "Miejscowo\u015b\u0107 (City)"
+            ],
+            "Administrative area": [
+                "Region administracyjny (AdministrativeArea)"
+            ],
+            "Country": [
+                "Kraj (Country)"
+            ],
+            "Service": [
+                "Us\u0142uga (Service)"
+            ],
+            "Add Service to schema": [
+                "Dodaj Service do schematu"
+            ],
+            "The service will be added to the existing Yoast SEO graph.": [
+                "Us\u0142uga zostanie do\u0142\u0105czona do istniej\u0105cego grafu Yoast SEO."
+            ],
+            "Service name": [
+                "Nazwa us\u0142ugi"
+            ],
+            "Leave empty to use the content title.": [
+                "Pozostaw puste, aby u\u017cy\u0107 tytu\u0142u tre\u015bci."
+            ],
+            "Service type": [
+                "Typ us\u0142ugi"
+            ],
+            "Example: Gate automation installation and servicing.": [
+                "Przyk\u0142ad: Monta\u017c i serwis automatyki do bram."
+            ],
+            "Service description": [
+                "Opis us\u0142ugi"
+            ],
+            "Leave empty to use the Yoast SEO description.": [
+                "Pozostaw puste, aby u\u017cy\u0107 opisu SEO Yoasta."
+            ],
+            "Service areas": [
+                "Obszary dzia\u0142ania"
+            ],
+            "Add each area separately and select its correct Schema.org type.": [
+                "Dodaj ka\u017cdy obszar osobno i wybierz jego prawid\u0142owy typ Schema.org."
+            ],
+            "Area type": [
+                "Typ obszaru"
+            ],
+            "Area name": [
+                "Nazwa obszaru"
+            ],
+            "Add area": [
+                "Dodaj obszar"
+            ],
+            "Remove area": [
+                "Usu\u0144 obszar"
+            ],
+            "Service catalog name": [
+                "Nazwa katalogu us\u0142ug"
+            ],
+            "Example: Security services in Wroclaw. Leave empty to derive the catalog name from the service name.": [
+                "Przyk\u0142ad: Zakres us\u0142ug monitoringu we Wroc\u0142awiu. Pozostaw puste, aby utworzy\u0107 nazw\u0119 katalogu z nazwy us\u0142ugi."
+            ],
+            "Service scope (hasOfferCatalog)": [
+                "Zakres us\u0142ug (hasOfferCatalog)"
+            ],
+            "Only add services that also appear in the visible content. The catalog is not generated without a valid item.": [
+                "Dodawaj wy\u0142\u0105cznie us\u0142ugi opisane r\u00f3wnie\u017c w widocznej tre\u015bci. Katalog nie jest generowany bez poprawnej pozycji."
+            ],
+            "Catalog service name": [
+                "Nazwa us\u0142ugi w katalogu"
+            ],
+            "Description (optional)": [
+                "Opis (opcjonalny)"
+            ],
+            "Add service": [
+                "Dodaj us\u0142ug\u0119"
+            ],
+            "Remove service": [
+                "Usu\u0144 us\u0142ug\u0119"
+            ],
+            "Brands": [
+                "Marki"
+            ],
+            "Enter one brand per line, for example Nice or BFT.": [
+                "Jedna marka w wierszu, np. Nice lub BFT."
+            ],
+            "Schema Extended": [
+                "Schema Extended"
+            ]
+        }
+    }
+}

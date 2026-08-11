@@ -61,7 +61,11 @@ final class Editor_Sidebar {
 			true
 		);
 
-		\wp_set_script_translations( self::HANDLE, 'isudev-schema-extended' );
+		\wp_set_script_translations(
+			self::HANDLE,
+			'isudev-schema-extended',
+			__DIR__ . '/../languages'
+		);
 
 		$style_file = __DIR__ . '/../build/index.css';
 		if ( \is_readable( $style_file ) ) {

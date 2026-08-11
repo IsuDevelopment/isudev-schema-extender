@@ -1,7 +1,7 @@
 # AGENTS.md — IsuDev Schema Extended
 
 Standalone WordPress plugin that extends the **Yoast SEO** schema graph with configurable,
-page-level entities. `Service` is the first entity module — it is a feature, not the plugin
+content-level entities. `Service` is the first entity module — it is a feature, not the plugin
 identity. Formerly lived in the Kormas monorepo (`packages/plugins/isudev-schema-extended`);
 now released independently from this repository.
 
@@ -38,6 +38,7 @@ npm run build           # compile src/ -> build/   (never edit build/ by hand)
 npm run start           # watch mode
 npm run lint:js         # ESLint + Prettier
 npm run format          # autofix JS formatting
+npm run i18n            # update POT/PO and compile Polish MO/JS JSON catalogs (requires WP-CLI)
 composer lint:php       # PHPCS, WordPress Coding Standards
 php -l <file>           # quick syntax check
 ```

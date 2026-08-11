@@ -48,6 +48,8 @@ through props, never coupled to one feature.
 - Group imports as WordPress dependencies / internal dependencies (`@wordpress/dependency-group`).
 - Run `npm run format` before `npm run lint:js`; both must pass.
 - Text domain: `isudev-schema-extended` for every translatable string.
+- English is the source language for every PHP and JavaScript `msgid`; Polish exists only in the
+  `pl_PL` catalogs. Run `npm run i18n` after changing a translatable string.
 
 ## Comments
 

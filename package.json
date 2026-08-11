@@ -1,6 +1,6 @@
 {
 	"name": "@isudev/schema-extended",
-	"version": "0.3.1",
+	"version": "0.3.2",
 	"description": "Editor controls for configurable entities in the Yoast SEO schema graph.",
 	"license": "GPL-3.0-or-later",
 	"private": true,
@@ -19,6 +19,11 @@
 		"lint:js": "wp-scripts lint-js src",
 		"lint:css": "wp-scripts lint-style \"src/**/*.css\"",
 		"lint:format": "prettier --check \"src/**/*.{js,css}\"",
-		"format": "prettier --write \"src/**/*.{js,css}\""
+		"format": "prettier --write \"src/**/*.{js,css}\"",
+		"i18n:pot": "wp i18n make-pot . languages/isudev-schema-extended.pot --exclude=.agents,.github,build --headers='{\"Report-Msgid-Bugs-To\":\"https://github.com/IsuDevelopment/isudev-schema-extender/issues\"}'",
+		"i18n:update-po": "wp i18n update-po languages/isudev-schema-extended.pot languages/isudev-schema-extended-pl_PL.po",
+		"i18n:mo": "wp i18n make-mo languages/isudev-schema-extended-pl_PL.po languages/isudev-schema-extended-pl_PL.mo",
+		"i18n:json": "wp i18n make-json languages/isudev-schema-extended-pl_PL.po languages --no-purge --pretty-print --use-map='{\"src/index.js\":\"build/index.js\",\"src/features/service/service-panel.js\":\"build/index.js\",\"src/features/custom/custom-schema-panel.js\":\"build/index.js\"}'",
+		"i18n": "npm run i18n:pot && npm run i18n:update-po && npm run i18n:mo && npm run i18n:json"
 	}
 }

@@ -3,13 +3,12 @@
  */
 import CustomSchemaPanel from './features/custom/custom-schema-panel';
 import ServicePanel from './features/service/service-panel';
+import schemaIcon from './icon';
 import './editor.css';
 
 const { PluginSidebar } = window.wp.editor;
 const { __ } = window.wp.i18n;
 const { registerPlugin } = window.wp.plugins;
-
-const schemaIcon = 'admin-tools';
 
 const SchemaExtendedSidebar = () => (
 	<PluginSidebar

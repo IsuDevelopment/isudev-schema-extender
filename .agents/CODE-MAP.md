@@ -24,6 +24,7 @@ Where to change what. Update this table whenever a file is added, renamed or rem
 | File | Contains | Change it when |
 | --- | --- | --- |
 | `src/index.js` | Registers the `Schema Extended` PluginSidebar, composes feature panels | New feature panel, sidebar identity |
+| `src/icon.js` | Inline schema sidebar icon | Sidebar icon geometry or accessibility attributes |
 | `src/features/service/service-panel.js` | Service fields, meta read/write via `core/editor` | Service editor UI |
 | `src/features/custom/custom-schema-panel.js` | Toggle, JSON editor and immediate diagnostics | Custom Schema editor UI |
 | `src/components/typed-name-repeater.js` | Reusable `{ type, name }` repeater | Shared repeater behaviour — keep it domain-agnostic |
@@ -42,5 +43,9 @@ attaches it to the release tag.
 | `composer.json` / `phpcs.xml.dist` | PHP deps (PUC, WPCS) and coding standard |
 | `.gitattributes` | Keeps `src/`, dev config and agent docs out of Composer/GitHub archives |
 | `package.json` / `.eslintrc.js` / `.prettierrc.js` | Editor build and JS linting |
+| `languages/isudev-schema-extended.pot` | Canonical English translation template |
+| `languages/isudev-schema-extended-pl_PL.po` / `.mo` | Editable and compiled Polish PHP translations |
+| `languages/isudev-schema-extended-pl_PL-*.json` | Polish translations for the compiled editor bundle |
 | `CHANGELOG.md` | One line per change, newest first |
+| `THIRD_PARTY_LICENSES.md` | Runtime-distributed attribution and license text for the sidebar icon |
 | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.agents/` | Agent instructions and docs |

@@ -10,10 +10,11 @@ script — Yoast stays the only schema output.
 autoload (Plugin Update Checker, admin/cron only), requires the classes and calls
 `Plugin::register()`.
 
-`Plugin::register()` wires four callbacks across three hooks:
+`Plugin::register()` wires five callbacks across three hooks:
 
 | Hook | Callback | Purpose |
 | --- | --- | --- |
+| `init` | `Plugin::load_textdomain` | Load bundled PHP translations for non-WordPress.org installs |
 | `init` (100) | `Service\Meta_Fields::register` | Register private REST post meta after conventional CPT registration |
 | `init` (100) | `Custom\Meta_Fields::register` | Register Custom Schema toggle + JSON source after conventional CPT registration |
 | `enqueue_block_editor_assets` | `Editor_Sidebar::enqueue` | Load `build/index.js` + CSS |
@@ -60,6 +61,10 @@ The sidebar mounts for the union of feature-supported post types. Both features 
 public post types that WordPress considers front-end viewable; their existing filters can override
 the lists independently. The plugin enables `custom-fields` support for selected registered types
 so the block editor can persist private REST metadata.
+
+English is the source locale. PHP loads the bundled `languages/isudev-schema-extended-pl_PL.mo`;
+the editor passes the same directory to `wp_set_script_translations()`, which loads the JSON catalog
+mapped to the compiled `build/index.js` bundle.
 
 ## Data model (post meta)
 

@@ -18,14 +18,18 @@ const SUPPORTED_PLACEHOLDERS = new Set( [
 	'{{primary_image_id}}',
 ] );
 
-const EXAMPLE = `{
-  "@type": "VideoObject",
-  "@id": "{{canonical}}#installation-video",
-  "name": "Montaż systemu monitoringu",
-  "mainEntityOfPage": {
-    "@id": "{{webpage_id}}"
-  }
-}`;
+const EXAMPLE = JSON.stringify(
+	{
+		'@type': 'VideoObject',
+		'@id': '{{canonical}}#installation-video',
+		name: __( 'Security system installation', 'isudev-schema-extended' ),
+		mainEntityOfPage: {
+			'@id': '{{webpage_id}}',
+		},
+	},
+	null,
+	2
+);
 
 const hasNestedContext = ( value ) => {
 	if ( ! value || typeof value !== 'object' ) {
@@ -52,14 +56,14 @@ const validateSource = ( source ) => {
 	if ( typeof source !== 'string' || source.trim() === '' ) {
 		return {
 			status: 'info',
-			message: __( 'Wklej JSON Schema.org, aby rozpocząć.', 'isudev-schema-extended' ),
+			message: __( 'Paste Schema.org JSON to get started.', 'isudev-schema-extended' ),
 		};
 	}
 
 	if ( source.length > MAX_SOURCE_LENGTH ) {
 		return {
 			status: 'error',
-			message: __( 'JSON przekracza dozwolony rozmiar.', 'isudev-schema-extended' ),
+			message: __( 'The JSON exceeds the allowed size.', 'isudev-schema-extended' ),
 		};
 	}
 
@@ -71,7 +75,7 @@ const validateSource = ( source ) => {
 			status: 'error',
 			message: sprintf(
 				/* translators: %s: JSON parser error. */
-				__( 'Niepoprawny JSON: %s', 'isudev-schema-extended' ),
+				__( 'Invalid JSON: %s', 'isudev-schema-extended' ),
 				error.message
 			),
 		};
@@ -80,7 +84,10 @@ const validateSource = ( source ) => {
 	if ( ! decoded || typeof decoded !== 'object' ) {
 		return {
 			status: 'error',
-			message: __( 'Główną wartością musi być obiekt, lista węzłów albo @graph.', 'isudev-schema-extended' ),
+			message: __(
+				'The root value must be an object, a node array or an @graph object.',
+				'isudev-schema-extended'
+			),
 		};
 	}
 
@@ -99,7 +106,7 @@ const validateSource = ( source ) => {
 		) {
 			return {
 				status: 'error',
-				message: __( 'Dozwolony jest wyłącznie kontekst Schema.org.', 'isudev-schema-extended' ),
+				message: __( 'Only the Schema.org context is allowed.', 'isudev-schema-extended' ),
 			};
 		}
 
@@ -116,7 +123,7 @@ const validateSource = ( source ) => {
 		) {
 			return {
 				status: 'error',
-				message: __( 'Dozwolony jest wyłącznie kontekst Schema.org.', 'isudev-schema-extended' ),
+				message: __( 'Only the Schema.org context is allowed.', 'isudev-schema-extended' ),
 			};
 		}
 
@@ -126,7 +133,7 @@ const validateSource = ( source ) => {
 	if ( ! Array.isArray( nodes ) || nodes.length === 0 ) {
 		return {
 			status: 'error',
-			message: __( '@graph musi zawierać co najmniej jeden węzeł.', 'isudev-schema-extended' ),
+			message: __( '@graph must contain at least one node.', 'isudev-schema-extended' ),
 		};
 	}
 
@@ -135,7 +142,7 @@ const validateSource = ( source ) => {
 			status: 'error',
 			message: sprintf(
 				/* translators: %d: maximum number of custom graph nodes. */
-				__( 'Możesz dodać maksymalnie %d węzłów.', 'isudev-schema-extended' ),
+				__( 'You may add at most %d nodes.', 'isudev-schema-extended' ),
 				MAX_NODES
 			),
 		};
@@ -149,7 +156,7 @@ const validateSource = ( source ) => {
 				status: 'error',
 				message: sprintf(
 					/* translators: %d: one-based graph node number. */
-					__( 'Węzeł %d musi być obiektem JSON.', 'isudev-schema-extended' ),
+					__( 'Node %d must be a JSON object.', 'isudev-schema-extended' ),
 					index + 1
 				),
 			};
@@ -163,7 +170,7 @@ const validateSource = ( source ) => {
 				status: 'error',
 				message: sprintf(
 					/* translators: %d: one-based graph node number. */
-					__( 'Węzeł %d zawiera zagnieżdżony @context.', 'isudev-schema-extended' ),
+					__( 'Node %d contains a nested @context.', 'isudev-schema-extended' ),
 					index + 1
 				),
 			};
@@ -174,7 +181,7 @@ const validateSource = ( source ) => {
 				status: 'error',
 				message: sprintf(
 					/* translators: %d: one-based graph node number. */
-					__( 'Węzeł %d zawiera nieznany placeholder.', 'isudev-schema-extended' ),
+					__( 'Node %d contains an unknown placeholder.', 'isudev-schema-extended' ),
 					index + 1
 				),
 			};
@@ -191,7 +198,7 @@ const validateSource = ( source ) => {
 				status: 'error',
 				message: sprintf(
 					/* translators: %d: one-based graph node number. */
-					__( 'Węzeł %d wymaga poprawnego @type.', 'isudev-schema-extended' ),
+					__( 'Node %d requires a valid @type.', 'isudev-schema-extended' ),
 					index + 1
 				),
 			};
@@ -203,7 +210,7 @@ const validateSource = ( source ) => {
 					status: 'error',
 					message: sprintf(
 						/* translators: %d: one-based graph node number. */
-						__( 'Węzeł %d ma niepoprawne @id.', 'isudev-schema-extended' ),
+						__( 'Node %d has an invalid @id.', 'isudev-schema-extended' ),
 						index + 1
 					),
 				};
@@ -212,7 +219,7 @@ const validateSource = ( source ) => {
 			if ( identifiers.has( node[ '@id' ] ) ) {
 				return {
 					status: 'error',
-					message: __( 'Każdy węzeł musi mieć unikalne @id.', 'isudev-schema-extended' ),
+					message: __( 'Every node must have a unique @id.', 'isudev-schema-extended' ),
 				};
 			}
 			identifiers.add( node[ '@id' ] );
@@ -223,7 +230,7 @@ const validateSource = ( source ) => {
 		status: 'success',
 		message: sprintf(
 			/* translators: %d: number of valid custom graph nodes. */
-			__( 'JSON jest poprawny. Rozpoznano węzły: %d.', 'isudev-schema-extended' ),
+			__( 'The JSON is valid. Recognized nodes: %d.', 'isudev-schema-extended' ),
 			nodes.length
 		),
 	};
@@ -238,7 +245,7 @@ const CustomSchemaPanel = () => {
 	if ( enabled && validation.status === 'info' ) {
 		validation.status = 'error';
 		validation.message = __(
-			'Custom Schema jest włączone, ale JSON jest pusty. Nic nie zostanie opublikowane.',
+			'Custom Schema is enabled, but the JSON is empty. Nothing will be published.',
 			'isudev-schema-extended'
 		);
 	}
@@ -253,14 +260,14 @@ const CustomSchemaPanel = () => {
 	};
 
 	return (
-		<PanelBody title={ __( 'Niestandardowe Schema', 'isudev-schema-extended' ) } initialOpen={ false }>
+		<PanelBody title={ __( 'Custom Schema', 'isudev-schema-extended' ) } initialOpen={ false }>
 			<div className="isudev-schema-extended__fields">
 				<ToggleControl
-					label={ __( 'Dodaj własne węzły do grafu Yoast', 'isudev-schema-extended' ) }
+					label={ __( 'Add custom nodes to the Yoast graph', 'isudev-schema-extended' ) }
 					help={
 						enabled
-							? __( 'Poprawne węzły zostaną dołączone do grafu Yoast.', 'isudev-schema-extended' )
-							: __( 'JSON pozostaje zapisany, ale nie jest publikowany.', 'isudev-schema-extended' )
+							? __( 'Valid nodes will be added to the Yoast graph.', 'isudev-schema-extended' )
+							: __( 'The JSON remains saved but is not published.', 'isudev-schema-extended' )
 					}
 					checked={ enabled }
 					onChange={ ( value ) => updateMeta( META.enabled, value ) }
@@ -274,7 +281,7 @@ const CustomSchemaPanel = () => {
 					className="isudev-custom-schema__source"
 					label={ __( 'JSON Schema.org', 'isudev-schema-extended' ) }
 					help={ __(
-						'Wklej pojedynczy obiekt, listę węzłów albo pełny obiekt @graph. @context zapewnia Yoast.',
+						'Paste a single object, a node array or a complete @graph object. Yoast provides @context.',
 						'isudev-schema-extended'
 					) }
 					rows={ 18 }
@@ -285,7 +292,7 @@ const CustomSchemaPanel = () => {
 
 				<p className="isudev-custom-schema__help">
 					{ __(
-						'Dostępne placeholdery: {{canonical}}, {{webpage_id}}, {{site_url}}, {{website_id}}, {{organization_id}}, {{primary_image_id}}.',
+						'Available placeholders: {{canonical}}, {{webpage_id}}, {{site_url}}, {{website_id}}, {{organization_id}}, {{primary_image_id}}.',
 						'isudev-schema-extended'
 					) }
 				</p>
@@ -296,7 +303,7 @@ const CustomSchemaPanel = () => {
 					disabled={ source === '' }
 					onClick={ () => updateMeta( META.source, '' ) }
 				>
-					{ __( 'Wyczyść konfigurację', 'isudev-schema-extended' ) }
+					{ __( 'Clear configuration', 'isudev-schema-extended' ) }
 				</Button>
 			</div>
 		</PanelBody>

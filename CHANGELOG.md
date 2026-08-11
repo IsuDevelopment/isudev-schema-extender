@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.2 — 2026-08-11
+
+- Made English the source locale and added bundled Polish translations for PHP and the editor.
+- Added a dedicated, dependency-free schema icon to the editor sidebar.
+
 ## 0.3.1 — 2026-08-11
 
 - Enabled Service and Custom Schema out of the box for every public, front-end-viewable post type.

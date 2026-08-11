@@ -1,0 +1,344 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: IsuDev Schema Extended 0.3.2\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/isudev-schema-extender\n"
+"Last-Translator: IsuDev <kontakt@isudev.pl>\n"
+"Language-Team: Polski\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-08-11T09:55:43+00:00\n"
+"PO-Revision-Date: 2026-08-11T09:55:43+00:00\n"
+"Language: pl_PL\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: isudev-schema-extended\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. Plugin Name of the plugin
+#: isudev-schema-extended.php
+msgid "IsuDev Schema Extended"
+msgstr "IsuDev Schema Extended"
+
+#. Plugin URI of the plugin
+#: isudev-schema-extended.php
+msgid "https://github.com/IsuDevelopment/isudev-schema-extender"
+msgstr "https://github.com/IsuDevelopment/isudev-schema-extender"
+
+#. Description of the plugin
+#: isudev-schema-extended.php
+msgid "Extends the Yoast SEO schema graph with configurable, content-level entities."
+msgstr "Rozszerza graf schematu Yoast SEO o konfigurowalne encje przypisane do treści."
+
+#. Author of the plugin
+#: isudev-schema-extended.php
+msgid "IsuDev"
+msgstr "IsuDev"
+
+#. Author URI of the plugin
+#: isudev-schema-extended.php
+msgid "https://isudev.pl"
+msgstr "https://isudev.pl"
+
+#: includes/custom/class-graph-parser.php:46
+msgid "Custom Schema JSON is empty."
+msgstr "JSON niestandardowego schematu jest pusty."
+
+#: includes/custom/class-graph-parser.php:54
+msgid "Custom Schema JSON exceeds the allowed size."
+msgstr "JSON niestandardowego schematu przekracza dozwolony rozmiar."
+
+#: includes/custom/class-graph-parser.php:72
+msgid "Custom Schema must contain a JSON object, a node array or an @graph object."
+msgstr "Niestandardowy schemat musi zawierać obiekt JSON, listę węzłów albo obiekt @graph."
+
+#. translators: %d: maximum number of custom graph nodes.
+#: includes/custom/class-graph-parser.php:83
+msgid "Custom Schema may contain at most %d graph nodes."
+msgstr "Niestandardowy schemat może zawierać maksymalnie %d węzłów grafu."
+
+#: includes/custom/class-graph-parser.php:98
+msgid "must be a JSON object."
+msgstr "musi być obiektem JSON."
+
+#: includes/custom/class-graph-parser.php:106
+msgid "must not define @context; Yoast owns the graph context."
+msgstr "nie może definiować @context; kontekst grafu należy do Yoasta."
+
+#: includes/custom/class-graph-parser.php:115
+msgid "requires a non-empty @type."
+msgstr "wymaga niepustego @type."
+
+#: includes/custom/class-graph-parser.php:125
+msgid "contains an unknown context placeholder."
+msgstr "zawiera nieznany placeholder kontekstu."
+
+#: includes/custom/class-graph-parser.php:140
+msgid "@id must be a string."
+msgstr "@id musi być ciągiem znaków."
+
+#: includes/custom/class-graph-parser.php:148
+msgid "@id must not be empty."
+msgstr "@id nie może być pusty."
+
+#: includes/custom/class-graph-parser.php:156
+msgid "uses an @id owned by Yoast."
+msgstr "używa @id należącego do Yoasta."
+
+#: includes/custom/class-graph-parser.php:164
+msgid "duplicates another custom node @id."
+msgstr "duplikuje @id innego niestandardowego węzła."
+
+#: includes/custom/class-graph-parser.php:198
+msgid "Only the Schema.org @context may be supplied; Yoast will output it."
+msgstr "Można podać wyłącznie @context Schema.org; Yoast doda go do wyjścia."
+
+#: includes/custom/class-graph-parser.php:207
+msgid "@graph must be an array of schema nodes."
+msgstr "@graph musi być listą węzłów schematu."
+
+#: includes/custom/class-graph-parser.php:217
+msgid "Properties next to @graph are ignored."
+msgstr "Właściwości obok @graph są ignorowane."
+
+#. translators: 1: graph node number, 2: validation detail.
+#: includes/custom/class-graph-parser.php:328
+msgid "Node %1$d %2$s"
+msgstr "Węzeł %1$d: %2$s"
+
+#: includes/custom/class-integration-api.php:75
+msgid "Enabled Custom Schema must pass validation before it can be saved through the integration API."
+msgstr "Włączony niestandardowy schemat musi przejść walidację przed zapisaniem przez API integracyjne."
+
+#: includes/custom/class-integration-api.php:96
+msgid "The requested post does not support Custom Schema."
+msgstr "Wybrany wpis nie obsługuje niestandardowego schematu."
+
+#: includes/custom/class-integration-api.php:103
+msgid "You are not allowed to edit Custom Schema for this post."
+msgstr "Nie masz uprawnień do edycji niestandardowego schematu dla tego wpisu."
+
+#. translators: %s: service name.
+#: includes/service/class-service-schema-piece.php:105
+msgid "Service scope: %s"
+msgstr "Zakres usług: %s"
+
+#: src/features/custom/custom-schema-panel.js:25
+msgid "Security system installation"
+msgstr "Montaż systemu monitoringu"
+
+#: src/features/custom/custom-schema-panel.js:59
+msgid "Paste Schema.org JSON to get started."
+msgstr "Wklej JSON Schema.org, aby rozpocząć."
+
+#: src/features/custom/custom-schema-panel.js:66
+msgid "The JSON exceeds the allowed size."
+msgstr "JSON przekracza dozwolony rozmiar."
+
+#. translators: %s: JSON parser error.
+#: src/features/custom/custom-schema-panel.js:78
+msgid "Invalid JSON: %s"
+msgstr "Niepoprawny JSON: %s"
+
+#: src/features/custom/custom-schema-panel.js:87
+msgid "The root value must be an object, a node array or an @graph object."
+msgstr "Główną wartością musi być obiekt, lista węzłów albo obiekt @graph."
+
+#: src/features/custom/custom-schema-panel.js:109
+#: src/features/custom/custom-schema-panel.js:126
+msgid "Only the Schema.org context is allowed."
+msgstr "Dozwolony jest wyłącznie kontekst Schema.org."
+
+#: src/features/custom/custom-schema-panel.js:136
+msgid "@graph must contain at least one node."
+msgstr "@graph musi zawierać co najmniej jeden węzeł."
+
+#. translators: %d: maximum number of custom graph nodes.
+#: src/features/custom/custom-schema-panel.js:145
+msgid "You may add at most %d nodes."
+msgstr "Możesz dodać maksymalnie %d węzłów."
+
+#. translators: %d: one-based graph node number.
+#: src/features/custom/custom-schema-panel.js:159
+msgid "Node %d must be a JSON object."
+msgstr "Węzeł %d musi być obiektem JSON."
+
+#. translators: %d: one-based graph node number.
+#: src/features/custom/custom-schema-panel.js:173
+msgid "Node %d contains a nested @context."
+msgstr "Węzeł %d zawiera zagnieżdżony @context."
+
+#. translators: %d: one-based graph node number.
+#: src/features/custom/custom-schema-panel.js:184
+msgid "Node %d contains an unknown placeholder."
+msgstr "Węzeł %d zawiera nieznany placeholder."
+
+#. translators: %d: one-based graph node number.
+#: src/features/custom/custom-schema-panel.js:201
+msgid "Node %d requires a valid @type."
+msgstr "Węzeł %d wymaga poprawnego @type."
+
+#. translators: %d: one-based graph node number.
+#: src/features/custom/custom-schema-panel.js:213
+msgid "Node %d has an invalid @id."
+msgstr "Węzeł %d ma niepoprawne @id."
+
+#: src/features/custom/custom-schema-panel.js:222
+msgid "Every node must have a unique @id."
+msgstr "Każdy węzeł musi mieć unikalne @id."
+
+#. translators: %d: number of valid custom graph nodes.
+#: src/features/custom/custom-schema-panel.js:233
+msgid "The JSON is valid. Recognized nodes: %d."
+msgstr "JSON jest poprawny. Rozpoznano węzły: %d."
+
+#: src/features/custom/custom-schema-panel.js:247
+msgid "Custom Schema is enabled, but the JSON is empty. Nothing will be published."
+msgstr "Niestandardowy schemat jest włączony, ale JSON jest pusty. Nic nie zostanie opublikowane."
+
+#: src/features/custom/custom-schema-panel.js:263
+msgid "Custom Schema"
+msgstr "Niestandardowe Schema"
+
+#: src/features/custom/custom-schema-panel.js:266
+msgid "Add custom nodes to the Yoast graph"
+msgstr "Dodaj własne węzły do grafu Yoast"
+
+#: src/features/custom/custom-schema-panel.js:269
+msgid "Valid nodes will be added to the Yoast graph."
+msgstr "Poprawne węzły zostaną dołączone do grafu Yoast."
+
+#: src/features/custom/custom-schema-panel.js:270
+msgid "The JSON remains saved but is not published."
+msgstr "JSON pozostaje zapisany, ale nie jest publikowany."
+
+#: src/features/custom/custom-schema-panel.js:282
+msgid "JSON Schema.org"
+msgstr "JSON Schema.org"
+
+#: src/features/custom/custom-schema-panel.js:283
+msgid "Paste a single object, a node array or a complete @graph object. Yoast provides @context."
+msgstr "Wklej pojedynczy obiekt, listę węzłów albo pełny obiekt @graph. @context zapewnia Yoast."
+
+#: src/features/custom/custom-schema-panel.js:294
+msgid "Available placeholders: {{canonical}}, {{webpage_id}}, {{site_url}}, {{website_id}}, {{organization_id}}, {{primary_image_id}}."
+msgstr "Dostępne placeholdery: {{canonical}}, {{webpage_id}}, {{site_url}}, {{website_id}}, {{organization_id}}, {{primary_image_id}}."
+
+#: src/features/custom/custom-schema-panel.js:306
+msgid "Clear configuration"
+msgstr "Wyczyść konfigurację"
+
+#: src/features/service/service-panel.js:25
+msgid "City"
+msgstr "Miejscowość (City)"
+
+#: src/features/service/service-panel.js:29
+msgid "Administrative area"
+msgstr "Region administracyjny (AdministrativeArea)"
+
+#: src/features/service/service-panel.js:33
+msgid "Country"
+msgstr "Kraj (Country)"
+
+#: src/features/service/service-panel.js:75
+msgid "Service"
+msgstr "Usługa (Service)"
+
+#: src/features/service/service-panel.js:77
+msgid "Add Service to schema"
+msgstr "Dodaj Service do schematu"
+
+#: src/features/service/service-panel.js:78
+msgid "The service will be added to the existing Yoast SEO graph."
+msgstr "Usługa zostanie dołączona do istniejącego grafu Yoast SEO."
+
+#: src/features/service/service-panel.js:86
+msgid "Service name"
+msgstr "Nazwa usługi"
+
+#: src/features/service/service-panel.js:87
+msgid "Leave empty to use the content title."
+msgstr "Pozostaw puste, aby użyć tytułu treści."
+
+#: src/features/service/service-panel.js:93
+msgid "Service type"
+msgstr "Typ usługi"
+
+#: src/features/service/service-panel.js:94
+msgid "Example: Gate automation installation and servicing."
+msgstr "Przykład: Montaż i serwis automatyki do bram."
+
+#: src/features/service/service-panel.js:100
+msgid "Service description"
+msgstr "Opis usługi"
+
+#: src/features/service/service-panel.js:101
+msgid "Leave empty to use the Yoast SEO description."
+msgstr "Pozostaw puste, aby użyć opisu SEO Yoasta."
+
+#: src/features/service/service-panel.js:107
+msgid "Service areas"
+msgstr "Obszary działania"
+
+#: src/features/service/service-panel.js:108
+msgid "Add each area separately and select its correct Schema.org type."
+msgstr "Dodaj każdy obszar osobno i wybierz jego prawidłowy typ Schema.org."
+
+#: src/features/service/service-panel.js:114
+msgid "Area type"
+msgstr "Typ obszaru"
+
+#: src/features/service/service-panel.js:115
+msgid "Area name"
+msgstr "Nazwa obszaru"
+
+#: src/features/service/service-panel.js:116
+msgid "Add area"
+msgstr "Dodaj obszar"
+
+#: src/features/service/service-panel.js:117
+msgid "Remove area"
+msgstr "Usuń obszar"
+
+#: src/features/service/service-panel.js:127
+msgid "Service catalog name"
+msgstr "Nazwa katalogu usług"
+
+#: src/features/service/service-panel.js:128
+msgid "Example: Security services in Wroclaw. Leave empty to derive the catalog name from the service name."
+msgstr "Przykład: Zakres usług monitoringu we Wrocławiu. Pozostaw puste, aby utworzyć nazwę katalogu z nazwy usługi."
+
+#: src/features/service/service-panel.js:137
+msgid "Service scope (hasOfferCatalog)"
+msgstr "Zakres usług (hasOfferCatalog)"
+
+#: src/features/service/service-panel.js:138
+msgid "Only add services that also appear in the visible content. The catalog is not generated without a valid item."
+msgstr "Dodawaj wyłącznie usługi opisane również w widocznej treści. Katalog nie jest generowany bez poprawnej pozycji."
+
+#: src/features/service/service-panel.js:144
+msgid "Catalog service name"
+msgstr "Nazwa usługi w katalogu"
+
+#: src/features/service/service-panel.js:145
+msgid "Description (optional)"
+msgstr "Opis (opcjonalny)"
+
+#: src/features/service/service-panel.js:146
+msgid "Add service"
+msgstr "Dodaj usługę"
+
+#: src/features/service/service-panel.js:147
+msgid "Remove service"
+msgstr "Usuń usługę"
+
+#: src/features/service/service-panel.js:152
+msgid "Brands"
+msgstr "Marki"
+
+#: src/features/service/service-panel.js:153
+msgid "Enter one brand per line, for example Nice or BFT."
+msgstr "Jedna marka w wierszu, np. Nice lub BFT."
+
+#: src/index.js:16
+msgid "Schema Extended"
+msgstr "Schema Extended"

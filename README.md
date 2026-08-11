@@ -24,6 +24,13 @@ into valid Schema.org output on the server.
 - PHP 8.4+
 - Yoast SEO (`wordpress-seo`) active — the plugin stays inert without it
 
+## Languages
+
+English is the source language. A complete Polish (`pl_PL`) translation for PHP diagnostics and
+the block-editor sidebar is bundled with the plugin and selected automatically from the current
+WordPress locale, including the per-user admin language. Translation catalogs are regenerated with
+`npm run i18n` using WP-CLI.
+
 ## Installation
 
 Pick one channel per site — do not mix them.
@@ -39,13 +46,13 @@ Pick one channel per site — do not mix them.
 		}
 	},
 	"require": {
-		"isudev/schema-extended": "^0.3.1"
+		"isudev/schema-extended": "^0.3.2"
 	}
 }
 ```
 
 ```bash
-composer require isudev/schema-extended:^0.3.1
+composer require isudev/schema-extended:^0.3.2
 ```
 
 `composer/installers` puts it in the site's plugin directory (`schema-extended`). Composer owns the
@@ -64,7 +71,8 @@ repository's releases from wp-admin and cron, and appears in the normal WordPres
 ## Editor fields
 
 The **Schema Extended** sidebar is available on every public post type that WordPress considers
-front-end viewable. It contains a typed Service panel and an advanced Custom Schema panel.
+front-end viewable. Its dedicated schema icon opens a typed Service panel and an advanced Custom
+Schema panel.
 
 The Service panel stores:
 

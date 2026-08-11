@@ -67,3 +67,15 @@ features now discover types through WordPress's `public` and `is_post_type_viewa
 while retaining independent filters for restrictions. Registration runs late on `init` to discover
 conventional third-party CPTs and enables their `custom-fields` support because Gutenberg cannot
 persist registered REST post meta without it. Private and non-viewable admin data stays excluded.
+
+## 13. English source strings with bundled Polish catalogs
+The plugin is distributed from GitHub rather than WordPress.org, so it cannot rely on the public
+translation service. English is the canonical source locale and Polish ships as PO, MO and mapped
+JavaScript JSON catalogs. Bundled catalogs keep both PHP diagnostics and the Gutenberg sidebar
+localized without requiring site-specific files under `wp-content/languages/plugins`.
+
+## 14. Inline schema icon without a runtime package
+The sidebar uses an inline SVG adapted from the MIT-licensed Material Icon Theme instead of adding
+`@wordpress/primitives` for two SVG elements. Native JSX keeps the editor dependency graph smaller;
+the source attribution points to
+`https://github.com/material-extensions/vscode-material-icon-theme/blob/main/LICENSE`.

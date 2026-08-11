@@ -22,15 +22,15 @@ const META = {
 
 const AREA_TYPES = [
 	{
-		label: __( 'Miejscowość (City)', 'isudev-schema-extended' ),
+		label: __( 'City', 'isudev-schema-extended' ),
 		value: 'City',
 	},
 	{
-		label: __( 'Region administracyjny (AdministrativeArea)', 'isudev-schema-extended' ),
+		label: __( 'Administrative area', 'isudev-schema-extended' ),
 		value: 'AdministrativeArea',
 	},
 	{
-		label: __( 'Kraj (Country)', 'isudev-schema-extended' ),
+		label: __( 'Country', 'isudev-schema-extended' ),
 		value: 'Country',
 	},
 ];
@@ -72,10 +72,10 @@ const ServicePanel = () => {
 			: getLegacyAreas( meta[ META.legacyAreaServed ] );
 
 	return (
-		<PanelBody title={ __( 'Usługa (Service)', 'isudev-schema-extended' ) } initialOpen>
+		<PanelBody title={ __( 'Service', 'isudev-schema-extended' ) } initialOpen>
 			<ToggleControl
-				label={ __( 'Dodaj Service do schematu', 'isudev-schema-extended' ) }
-				help={ __( 'Usługa zostanie dołączona do istniejącego grafu Yoast SEO.', 'isudev-schema-extended' ) }
+				label={ __( 'Add Service to schema', 'isudev-schema-extended' ) }
+				help={ __( 'The service will be added to the existing Yoast SEO graph.', 'isudev-schema-extended' ) }
 				checked={ enabled }
 				onChange={ ( value ) => updateMeta( META.enabled, value ) }
 			/>
@@ -83,38 +83,38 @@ const ServicePanel = () => {
 			{ enabled && (
 				<div className="isudev-schema-extended__fields">
 					<TextControl
-						label={ __( 'Nazwa usługi', 'isudev-schema-extended' ) }
-						help={ __( 'Pozostaw puste, aby użyć tytułu strony.', 'isudev-schema-extended' ) }
+						label={ __( 'Service name', 'isudev-schema-extended' ) }
+						help={ __( 'Leave empty to use the content title.', 'isudev-schema-extended' ) }
 						value={ meta[ META.name ] ?? '' }
 						onChange={ ( value ) => updateMeta( META.name, value ) }
 					/>
 
 					<TextControl
-						label={ __( 'Typ usługi', 'isudev-schema-extended' ) }
-						help={ __( 'Przykład: Montaż i serwis automatyki do bram.', 'isudev-schema-extended' ) }
+						label={ __( 'Service type', 'isudev-schema-extended' ) }
+						help={ __( 'Example: Gate automation installation and servicing.', 'isudev-schema-extended' ) }
 						value={ meta[ META.serviceType ] ?? '' }
 						onChange={ ( value ) => updateMeta( META.serviceType, value ) }
 					/>
 
 					<TextareaControl
-						label={ __( 'Opis usługi', 'isudev-schema-extended' ) }
-						help={ __( 'Pozostaw puste, aby użyć opisu SEO Yoasta.', 'isudev-schema-extended' ) }
+						label={ __( 'Service description', 'isudev-schema-extended' ) }
+						help={ __( 'Leave empty to use the Yoast SEO description.', 'isudev-schema-extended' ) }
 						value={ meta[ META.description ] ?? '' }
 						onChange={ ( value ) => updateMeta( META.description, value ) }
 					/>
 
 					<TypedNameRepeater
-						label={ __( 'Obszary działania', 'isudev-schema-extended' ) }
+						label={ __( 'Service areas', 'isudev-schema-extended' ) }
 						help={ __(
-							'Dodaj każdy obszar osobno i wybierz jego prawidłowy typ Schema.org.',
+							'Add each area separately and select its correct Schema.org type.',
 							'isudev-schema-extended'
 						) }
 						value={ areas }
 						typeOptions={ AREA_TYPES }
-						typeLabel={ __( 'Typ obszaru', 'isudev-schema-extended' ) }
-						nameLabel={ __( 'Nazwa obszaru', 'isudev-schema-extended' ) }
-						addLabel={ __( 'Dodaj obszar', 'isudev-schema-extended' ) }
-						removeLabel={ __( 'Usuń obszar', 'isudev-schema-extended' ) }
+						typeLabel={ __( 'Area type', 'isudev-schema-extended' ) }
+						nameLabel={ __( 'Area name', 'isudev-schema-extended' ) }
+						addLabel={ __( 'Add area', 'isudev-schema-extended' ) }
+						removeLabel={ __( 'Remove area', 'isudev-schema-extended' ) }
 						onChange={ ( value ) =>
 							updateMetaValues( {
 								[ META.areas ]: value,
@@ -124,9 +124,9 @@ const ServicePanel = () => {
 					/>
 
 					<TextControl
-						label={ __( 'Nazwa katalogu usług', 'isudev-schema-extended' ) }
+						label={ __( 'Service catalog name', 'isudev-schema-extended' ) }
 						help={ __(
-							'Przykład: Zakres usług monitoringu we Wrocławiu. Pozostaw puste, aby utworzyć nazwę z nazwy usługi.',
+							'Example: Security services in Wroclaw. Leave empty to derive the catalog name from the service name.',
 							'isudev-schema-extended'
 						) }
 						value={ meta[ META.catalogName ] ?? '' }
@@ -134,23 +134,23 @@ const ServicePanel = () => {
 					/>
 
 					<OfferRepeater
-						label={ __( 'Zakres usług (hasOfferCatalog)', 'isudev-schema-extended' ) }
+						label={ __( 'Service scope (hasOfferCatalog)', 'isudev-schema-extended' ) }
 						help={ __(
-							'Dodawaj wyłącznie usługi opisane również w widocznej treści strony. Katalog nie jest generowany bez poprawnej pozycji.',
+							'Only add services that also appear in the visible content. The catalog is not generated without a valid item.',
 							'isudev-schema-extended'
 						) }
 						value={ meta[ META.offers ] ?? [] }
 						maxItems={ 20 }
-						nameLabel={ __( 'Nazwa usługi w katalogu', 'isudev-schema-extended' ) }
-						descriptionLabel={ __( 'Opis (opcjonalny)', 'isudev-schema-extended' ) }
-						addLabel={ __( 'Dodaj usługę', 'isudev-schema-extended' ) }
-						removeLabel={ __( 'Usuń usługę', 'isudev-schema-extended' ) }
+						nameLabel={ __( 'Catalog service name', 'isudev-schema-extended' ) }
+						descriptionLabel={ __( 'Description (optional)', 'isudev-schema-extended' ) }
+						addLabel={ __( 'Add service', 'isudev-schema-extended' ) }
+						removeLabel={ __( 'Remove service', 'isudev-schema-extended' ) }
 						onChange={ ( value ) => updateMeta( META.offers, value ) }
 					/>
 
 					<TextareaControl
-						label={ __( 'Marki', 'isudev-schema-extended' ) }
-						help={ __( 'Jedna marka w wierszu, np. Nice lub BFT.', 'isudev-schema-extended' ) }
+						label={ __( 'Brands', 'isudev-schema-extended' ) }
+						help={ __( 'Enter one brand per line, for example Nice or BFT.', 'isudev-schema-extended' ) }
 						value={ meta[ META.brands ] ?? '' }
 						onChange={ ( value ) => updateMeta( META.brands, value ) }
 					/>

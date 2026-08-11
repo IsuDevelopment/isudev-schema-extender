@@ -102,7 +102,7 @@ final class Service_Schema_Piece extends Abstract_Schema_Piece {
 			if ( '' === $catalog_name ) {
 				$catalog_name = \sprintf(
 					/* translators: %s: service name. */
-					\__( 'Zakres usług: %s', 'isudev-schema-extended' ),
+					\__( 'Service scope: %s', 'isudev-schema-extended' ),
 					$name
 				);
 			}
