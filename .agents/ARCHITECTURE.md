@@ -14,8 +14,8 @@ autoload (Plugin Update Checker, admin/cron only), requires the classes and call
 
 | Hook | Callback | Purpose |
 | --- | --- | --- |
-| `init` | `Service\Meta_Fields::register` | Register private REST post meta |
-| `init` | `Custom\Meta_Fields::register` | Register Custom Schema toggle + JSON source |
+| `init` (100) | `Service\Meta_Fields::register` | Register private REST post meta after conventional CPT registration |
+| `init` (100) | `Custom\Meta_Fields::register` | Register Custom Schema toggle + JSON source after conventional CPT registration |
 | `enqueue_block_editor_assets` | `Editor_Sidebar::enqueue` | Load `build/index.js` + CSS |
 | `plugins_loaded` (20) | `Plugin::register_yoast_integration` | Load graph code only if Yoast is active |
 
@@ -56,8 +56,10 @@ PluginSidebar "Schema Extended" (src/index.js)
       → immediate JSON diagnostics  → _isudev_schema_custom_json
 ```
 
-The sidebar only mounts for post types returned by `Meta_Fields::get_supported_post_types()`
-(`page` by default). Those post types must support `custom-fields`.
+The sidebar mounts for the union of feature-supported post types. Both features default to all
+public post types that WordPress considers front-end viewable; their existing filters can override
+the lists independently. The plugin enables `custom-fields` support for selected registered types
+so the block editor can persist private REST metadata.
 
 ## Data model (post meta)
 

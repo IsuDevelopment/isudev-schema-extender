@@ -60,3 +60,10 @@ justify their maintenance cost.
 The future MCP adapter belongs to the bridge plugin, but it must not know Schema Extended's meta
 keys. `Custom\Integration_API` owns capability checks, validation and persistence so storage can
 change without breaking external tools.
+
+## 12. Publicly viewable post types are supported by default
+Page-only defaults made valid schema use cases on posts and public CPTs require site code. Both
+features now discover types through WordPress's `public` and `is_post_type_viewable()` contracts,
+while retaining independent filters for restrictions. Registration runs late on `init` to discover
+conventional third-party CPTs and enables their `custom-fields` support because Gutenberg cannot
+persist registered REST post meta without it. Private and non-viewable admin data stays excluded.

@@ -8,6 +8,7 @@ Where to change what. Update this table whenever a file is added, renamed or rem
 | --- | --- | --- |
 | `isudev-schema-extended.php` | Plugin header, constants, Composer autoload, Plugin Update Checker bootstrap, requires | Version bump, new top-level require, update-checker config |
 | `includes/class-plugin.php` | `Plugin::register()`, lazy Yoast loading | New global hook or new feature module |
+| `includes/class-post-types.php` | Shared public/viewable post-type discovery and required metadata support | Default post-type eligibility or editor meta support |
 | `includes/class-editor-sidebar.php` | Enqueues `build/index.js` / `index.css` for supported post types | Editor asset handling, script dependencies, translations |
 | `includes/service/class-meta-fields.php` | Service meta keys, registration, sanitization, supported post types, legacy area migration | New field, new sanitization rule, post-type support |
 | `includes/service/class-schema-integration.php` | `wpseo_schema_graph_pieces` + `wpseo_schema_webpage` filters, `about` linking | How the entity attaches to Yoast's graph |

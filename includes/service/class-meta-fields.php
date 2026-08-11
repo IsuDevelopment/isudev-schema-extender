@@ -9,6 +9,8 @@ declare( strict_types = 1 );
 
 namespace IsuDev\SchemaExtended\Service;
 
+use IsuDev\SchemaExtended\Post_Types;
+
 /**
  * Owns the persisted service-page configuration.
  */
@@ -35,6 +37,7 @@ final class Meta_Fields {
 	 */
 	public static function register(): void {
 		foreach ( self::get_supported_post_types() as $post_type ) {
+			Post_Types::ensure_custom_fields_support( $post_type );
 			self::register_field( $post_type, self::ENABLED, 'boolean', false, 'rest_sanitize_boolean' );
 			self::register_field( $post_type, self::NAME, 'string', '', 'sanitize_text_field' );
 			self::register_field( $post_type, self::SERVICE_TYPE, 'string', '', 'sanitize_text_field' );
@@ -104,12 +107,14 @@ final class Meta_Fields {
 	 * @return string[]
 	 */
 	public static function get_supported_post_types(): array {
+		$default_post_types = Post_Types::get_publicly_viewable();
+
 		/**
 		 * Legacy filter for post types supported by the Service feature.
 		 *
 		 * @param string[] $post_types Supported post type names.
 		 */
-		$post_types = \apply_filters( 'isudev_yoast_services_post_types', [ 'page' ] );
+		$post_types = \apply_filters( 'isudev_yoast_services_post_types', $default_post_types );
 
 		/**
 		 * Filters post types supported by the Schema Extended Service feature.
@@ -119,7 +124,7 @@ final class Meta_Fields {
 		$post_types = \apply_filters( 'isudev_schema_extended_service_post_types', $post_types );
 
 		if ( ! \is_array( $post_types ) ) {
-			return [ 'page' ];
+			return $default_post_types;
 		}
 
 		return \array_values(

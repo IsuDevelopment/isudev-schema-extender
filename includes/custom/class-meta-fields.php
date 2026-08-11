@@ -9,6 +9,8 @@ declare( strict_types = 1 );
 
 namespace IsuDev\SchemaExtended\Custom;
 
+use IsuDev\SchemaExtended\Post_Types;
+
 /**
  * Owns the persisted custom schema configuration.
  */
@@ -23,6 +25,7 @@ final class Meta_Fields {
 	 */
 	public static function register(): void {
 		foreach ( self::get_supported_post_types() as $post_type ) {
+			Post_Types::ensure_custom_fields_support( $post_type );
 			self::register_field( $post_type, self::ENABLED, 'boolean', false, 'rest_sanitize_boolean' );
 			self::register_field(
 				$post_type,
@@ -47,15 +50,17 @@ final class Meta_Fields {
 	 * @return string[]
 	 */
 	public static function get_supported_post_types(): array {
+		$default_post_types = Post_Types::get_publicly_viewable();
+
 		/**
 		 * Filters post types supported by the Custom Schema feature.
 		 *
 		 * @param string[] $post_types Supported post type names.
 		 */
-		$post_types = \apply_filters( 'isudev_schema_extended_custom_post_types', [ 'page' ] );
+		$post_types = \apply_filters( 'isudev_schema_extended_custom_post_types', $default_post_types );
 
 		if ( ! \is_array( $post_types ) ) {
-			return [ 'page' ];
+			return $default_post_types;
 		}
 
 		return \array_values(

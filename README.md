@@ -1,6 +1,6 @@
 # IsuDev Schema Extended
 
-WordPress plugin that extends the **Yoast SEO** schema graph with configurable, page-level
+WordPress plugin that extends the **Yoast SEO** schema graph with configurable, content-level
 entities — edited in the block editor, validated on the server and rendered by Yoast.
 
 Yoast remains the owner of `WebPage`, `FAQPage`, `Organization`, `WebSite`, images and breadcrumbs.
@@ -13,7 +13,7 @@ is designed so further entities can be added as sibling modules.
 
 ## Why
 
-Editors need page-level structured data (what service this page describes, where it is offered,
+Editors need content-level structured data (what service this content describes, where it is offered,
 what it covers) without hand-written JSON-LD, and without fighting the SEO plugin that already
 renders the graph. The plugin gives them typed fields in the editor sidebar and turns those fields
 into valid Schema.org output on the server.
@@ -39,13 +39,13 @@ Pick one channel per site — do not mix them.
 		}
 	},
 	"require": {
-		"isudev/schema-extended": "^0.3.0"
+		"isudev/schema-extended": "^0.3.1"
 	}
 }
 ```
 
 ```bash
-composer require isudev/schema-extended:^0.3.0
+composer require isudev/schema-extended:^0.3.1
 ```
 
 `composer/installers` puts it in the site's plugin directory (`schema-extended`). Composer owns the
@@ -63,8 +63,8 @@ repository's releases from wp-admin and cron, and appears in the normal WordPres
 
 ## Editor fields
 
-The **Schema Extended** sidebar is available on pages. It contains a typed Service panel and an
-advanced Custom Schema panel.
+The **Schema Extended** sidebar is available on every public post type that WordPress considers
+front-end viewable. It contains a typed Service panel and an advanced Custom Schema panel.
 
 The Service panel stores:
 
@@ -155,12 +155,13 @@ not transactional product offers. Every item should also exist in the page's vis
 
 ## Supported post types
 
-Pages are supported by default. Add another REST-enabled post type with:
+Every public, front-end-viewable post type is supported by default. Use the filters to override the
+Service or Custom Schema list independently, for example to restrict Service to pages:
 
 ```php
 add_filter(
 	'isudev_schema_extended_service_post_types',
-	static fn( array $post_types ): array => [ ...$post_types, 'service' ]
+	static fn( array $post_types ): array => [ 'page' ]
 );
 ```
 
@@ -169,11 +170,12 @@ Custom Schema has its own equivalent filter:
 ```php
 add_filter(
 	'isudev_schema_extended_custom_post_types',
-	static fn( array $post_types ): array => [ ...$post_types, 'service' ]
+	static fn( array $post_types ): array => [ 'page', 'post' ]
 );
 ```
 
-The post type must support `custom-fields` so WordPress can persist REST-exposed post meta.
+The plugin enables `custom-fields` support for selected registered post types so WordPress can
+persist its private REST-exposed metadata. Existing capability and sanitization checks still apply.
 
 ## Integration API
 

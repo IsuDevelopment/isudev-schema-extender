@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.1 — 2026-08-11
+
+- Enabled Service and Custom Schema out of the box for every public, front-end-viewable post type.
+- Updated the PHP_CodeSniffer development lock to the security-patched 3.13.6 release.
+
 ## 0.3.0 — 2026-08-03
 
 - Added an advanced Custom Schema editor that merges arbitrary validated Schema.org nodes into

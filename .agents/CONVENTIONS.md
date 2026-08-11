@@ -35,6 +35,8 @@ through props, never coupled to one feature.
 - Classes are `final`, mostly static, one class per file, `class-*.php` naming.
 - Post meta: private (`_` prefix), `show_in_rest` with an explicit schema, a sanitize callback and
   an `edit_post` auth callback. No exceptions.
+- Features default to every public post type that WordPress considers front-end viewable. Preserve
+  their filters as the boundary for site-specific restrictions.
 - Escape on output, sanitize on input.
 - External integrations call `Custom\Integration_API`; they never read or write the private meta
   keys directly.

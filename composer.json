@@ -1,9 +1,9 @@
 {
 	"name": "isudev/schema-extended",
-	"description": "Extends the Yoast SEO schema graph with configurable, page-level entities.",
+	"description": "Extends the Yoast SEO schema graph with configurable, content-level entities.",
 	"type": "wordpress-plugin",
 	"license": "GPL-3.0-or-later",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"require": {
 		"php": ">=8.4",
 		"yahnis-elsts/plugin-update-checker": "^5.6"

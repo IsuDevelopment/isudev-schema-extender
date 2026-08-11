@@ -22,8 +22,9 @@ final class Plugin {
 	 * Register plugin hooks.
 	 */
 	public static function register(): void {
-		\add_action( 'init', [ Meta_Fields::class, 'register' ] );
-		\add_action( 'init', [ Custom_Meta_Fields::class, 'register' ] );
+		// Run after conventional CPT registration so dynamic discovery sees third-party types.
+		\add_action( 'init', [ Meta_Fields::class, 'register' ], 100 );
+		\add_action( 'init', [ Custom_Meta_Fields::class, 'register' ], 100 );
 		\add_action( 'enqueue_block_editor_assets', [ Editor_Sidebar::class, 'enqueue' ] );
 		\add_action( 'plugins_loaded', [ self::class, 'register_yoast_integration' ], 20 );
 	}
