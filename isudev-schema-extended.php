@@ -3,8 +3,8 @@
  * Plugin Name:       IsuDev Schema Extended
  * Plugin URI:        https://github.com/IsuDevelopment/isudev-schema-extender
  * Description:       Extends the Yoast SEO schema graph with configurable, content-level entities.
- * Version:           0.3.2
- * Requires at least: 6.9
+ * Version:           0.4.0
+ * Requires at least: 7.1
  * Requires PHP:      8.4
  * Requires Plugins:  wordpress-seo
  * Author:            IsuDev
@@ -26,7 +26,7 @@ use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 defined( 'ABSPATH' ) || exit;
 
 \define( 'ISUDEV_SCHEMA_EXTENDED_FILE', __FILE__ );
-\define( 'ISUDEV_SCHEMA_EXTENDED_VERSION', '0.3.2' );
+\define( 'ISUDEV_SCHEMA_EXTENDED_VERSION', '0.4.0' );
 
 $isudev_schema_extended_autoload = __DIR__ . '/vendor/autoload.php';
 
@@ -59,6 +59,9 @@ require_once __DIR__ . '/includes/service/class-meta-fields.php';
 require_once __DIR__ . '/includes/custom/class-meta-fields.php';
 require_once __DIR__ . '/includes/custom/class-graph-parser.php';
 require_once __DIR__ . '/includes/custom/class-integration-api.php';
+require_once __DIR__ . '/includes/ai/class-wp-ai-integration.php';
+require_once __DIR__ . '/includes/ai/class-schema-suggester.php';
+require_once __DIR__ . '/includes/abilities/class-abilities.php';
 require_once __DIR__ . '/includes/class-editor-sidebar.php';
 require_once __DIR__ . '/includes/class-plugin.php';
 

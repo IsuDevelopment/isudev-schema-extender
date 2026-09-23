@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.0 — 2026-09-23
+
+- Required WordPress 7.1.
+- Added `isudev-schema/*` abilities to get, validate, update and AI-suggest Custom Schema, exposed
+  over REST and the MCP Adapter default server.
+- Added an "Explore & extend schema" button that proposes missing Schema.org nodes through the
+  core AI Client, with an optional WordPress AI plugin feature toggle.
+
 ## 0.3.2 — 2026-08-11
 
 - Made English the source locale and added bundled Polish translations for PHP and the editor.

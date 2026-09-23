@@ -40,11 +40,17 @@ through props, never coupled to one feature.
 - Escape on output, sanitize on input.
 - External integrations call `Custom\Integration_API`; they never read or write the private meta
   keys directly.
+- Abilities live under the `Abilities::CATEGORY` constant, declare input/output schemas and all
+  three annotations, and check the supported post type plus `edit_post`. Ability names are public
+  API — do not rename them without a changelog entry and a migration note.
+- AI output is untrusted: it always goes through `Meta_Fields::sanitize_source`, the forbidden-type
+  strip and `Graph_Parser`, and is never persisted by the suggestion path.
 
 ## JavaScript
 
 - The sidebar is **editor-only**, built from `src/` with `@wordpress/scripts`. Never edit `build/`.
-- Read and write meta through `core/editor` selectors/dispatch — no direct REST calls.
+- Read and write meta through `core/editor` selectors/dispatch — no direct REST calls. The one
+  exception is `run-ability.js`, which calls the core Abilities run endpoint.
 - Group imports as WordPress dependencies / internal dependencies (`@wordpress/dependency-group`).
 - Run `npm run format` before `npm run lint:js`; both must pass.
 - Text domain: `isudev-schema-extended` for every translatable string.

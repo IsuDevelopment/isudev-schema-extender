@@ -20,7 +20,7 @@ into valid Schema.org output on the server.
 
 ## Requirements
 
-- WordPress 6.9+
+- WordPress 7.1+
 - PHP 8.4+
 - Yoast SEO (`wordpress-seo`) active — the plugin stays inert without it
 
@@ -46,13 +46,13 @@ Pick one channel per site — do not mix them.
 		}
 	},
 	"require": {
-		"isudev/schema-extended": "^0.3.2"
+		"isudev/schema-extended": "^0.4.0"
 	}
 }
 ```
 
 ```bash
-composer require isudev/schema-extended:^0.3.2
+composer require isudev/schema-extended:^0.4.0
 ```
 
 `composer/installers` puts it in the site's plugin directory (`schema-extended`). Composer owns the
@@ -127,6 +127,29 @@ Example:
 Only describe information visible on the page. The generic editor deliberately does not certify
 that an arbitrary Schema.org type qualifies for a Google rich result.
 
+### Explore & extend schema (AI)
+
+When the site has an AI connector with text generation (**Settings → Connectors**, WordPress 7.0+
+AI Client), the Custom Schema panel shows an **Explore & extend schema** button. It sends the
+current editor content, the resolved Yoast graph and the current Custom Schema JSON to the
+connector and opens a proposal: a short analysis, the missing entities and a complete replacement
+JSON next to the current one. **Replace JSON in the editor** only changes the unsaved editor value —
+nothing is stored until the post is saved.
+
+The proposal passes the same server validation as manual JSON. Reviews, ratings, offers and prices
+are always removed from AI proposals, because they need verifiable on-page content; the modal lists
+what was removed. Without a connector the button stays disabled with a link to Connectors.
+
+With the [WordPress AI plugin](https://github.com/WordPress/ai) active, the feature appears as
+**Custom Schema suggestions** in its settings and follows that toggle. Without it, the feature is on
+whenever a connector exists. Override either way:
+
+```php
+add_filter( 'isudev_schema_extended_ai_suggestions_enabled', '__return_false' );
+```
+
+Content leaves the site for the configured AI provider on every click.
+
 ### Service areas
 
 Areas are stored as private REST metadata objects with `type` and `name`. JSON-LD serialization
@@ -195,7 +218,38 @@ post meta. The capability-protected contract exposes:
 - `update_configuration( $post_id, $enabled, $json )`.
 
 The update method refuses to enable invalid JSON and returns structured diagnostics in a
-`WP_Error`. This is the intended boundary for future MCP abilities in a separate bridge plugin.
+`WP_Error`.
+
+## Abilities and MCP
+
+The plugin registers four abilities in the `isudev-schema` category. Every one requires
+`edit_post` on the requested post:
+
+| Ability | Does |
+| --- | --- |
+| `isudev-schema/get-custom-schema` | Read the saved toggle, JSON and validation |
+| `isudev-schema/validate-custom-schema` | Validate proposed JSON without saving |
+| `isudev-schema/update-custom-schema` | Save the toggle and/or JSON (enabled JSON must be valid) |
+| `isudev-schema/suggest-custom-schema` | AI analysis and proposal; never saves (`writes_performed: false`) |
+
+They are available over REST (`/wp-json/wp-abilities/v1/abilities/<name>/run`) and marked
+`meta.mcp.public`, so the [MCP Adapter](https://github.com/WordPress/mcp-adapter) default server
+lists them through `discover-abilities` and runs them through `execute-ability` — no extra MCP
+plugin required.
+
+Sites that also run WP Content Bridge, which has its own gated Custom Schema tools, can hide the
+duplicates from MCP:
+
+```php
+add_filter(
+	'isudev_schema_extended_mcp_public',
+	static fn( bool $public, string $name ): bool => 'isudev-schema/suggest-custom-schema' === $name
+		? $public
+		: false,
+	10,
+	2
+);
+```
 
 ## Development
 

@@ -18,6 +18,10 @@ Where to change what. Update this table whenever a file is added, renamed or rem
 | `includes/custom/class-custom-schema-piece.php` | Yoast context placeholders, reserved IDs and graph output | Custom nodes in the Yoast graph |
 | `includes/custom/class-schema-integration.php` | Registers the generic graph piece | Custom Yoast collector integration |
 | `includes/custom/class-integration-api.php` | Capability-protected read, validate and update contract | External bridge/MCP integration |
+| `includes/abilities/class-abilities.php` | `isudev-schema` category, four abilities, schemas, annotations, MCP exposure | Ability contract, permissions, MCP visibility |
+| `includes/ai/class-schema-suggester.php` | AI Client prompt, response schema, forbidden-type stripping, enabled/provider checks | Suggestion behaviour, prompt, limits |
+| `includes/ai/class-wp-ai-integration.php` | Detects the WordPress AI plugin, hooks `wpai_register_features` | WordPress AI plugin detection |
+| `includes/ai/class-wp-ai-feature.php` | `Abstract_Feature` subclass, loaded only with the AI plugin | AI settings label/description/category |
 
 ## JavaScript (`src/`, built into `build/`)
 
@@ -27,6 +31,8 @@ Where to change what. Update this table whenever a file is added, renamed or rem
 | `src/icon.js` | Inline schema sidebar icon | Sidebar icon geometry or accessibility attributes |
 | `src/features/service/service-panel.js` | Service fields, meta read/write via `core/editor` | Service editor UI |
 | `src/features/custom/custom-schema-panel.js` | Toggle, JSON editor and immediate diagnostics | Custom Schema editor UI |
+| `src/features/custom/schema-suggestion.js` | "Explore & extend schema" button and proposal modal | AI suggestion UI |
+| `src/features/custom/run-ability.js` | POST to the core Abilities run endpoint | How the editor calls abilities |
 | `src/components/typed-name-repeater.js` | Reusable `{ type, name }` repeater | Shared repeater behaviour — keep it domain-agnostic |
 | `src/components/offer-repeater.js` | Reusable offer/catalog item repeater | Shared catalog row behaviour |
 | `src/editor.css` | Sidebar styling | Sidebar layout only |

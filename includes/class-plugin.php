@@ -9,6 +9,8 @@ declare( strict_types = 1 );
 
 namespace IsuDev\SchemaExtended;
 
+use IsuDev\SchemaExtended\Abilities\Abilities;
+use IsuDev\SchemaExtended\Ai\Wp_Ai_Integration;
 use IsuDev\SchemaExtended\Custom\Meta_Fields as Custom_Meta_Fields;
 use IsuDev\SchemaExtended\Custom\Schema_Integration as Custom_Schema_Integration;
 use IsuDev\SchemaExtended\Service\Meta_Fields;
@@ -27,6 +29,8 @@ final class Plugin {
 		\add_action( 'init', [ Meta_Fields::class, 'register' ], 100 );
 		\add_action( 'init', [ Custom_Meta_Fields::class, 'register' ], 100 );
 		\add_action( 'enqueue_block_editor_assets', [ Editor_Sidebar::class, 'enqueue' ] );
+		Abilities::register();
+		Wp_Ai_Integration::register();
 		\add_action( 'plugins_loaded', [ self::class, 'register_yoast_integration' ], 20 );
 	}
 

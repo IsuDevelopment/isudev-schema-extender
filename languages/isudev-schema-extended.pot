@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-08-11T10:05:22+00:00\n"
+"POT-Creation-Date: 2026-09-23T11:30:52+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: isudev-schema-extended\n"
@@ -37,6 +37,98 @@ msgstr ""
 #. Author URI of the plugin
 #: isudev-schema-extended.php
 msgid "https://isudev.pl"
+msgstr ""
+
+#: includes/abilities/class-abilities.php:44
+#: src/index.js:16
+msgid "Schema Extended"
+msgstr ""
+
+#: includes/abilities/class-abilities.php:45
+msgid "Read, validate, update and suggest Custom Schema nodes merged into the Yoast graph."
+msgstr ""
+
+#: includes/abilities/class-abilities.php:57
+msgid "Get Custom Schema"
+msgstr ""
+
+#: includes/abilities/class-abilities.php:58
+msgid "Returns the saved Custom Schema toggle, JSON source and structural validation for one post."
+msgstr ""
+
+#: includes/abilities/class-abilities.php:71
+msgid "Validate Custom Schema"
+msgstr ""
+
+#: includes/abilities/class-abilities.php:72
+msgid "Validates proposed Custom Schema JSON for one post without saving it. Context placeholders stay unresolved."
+msgstr ""
+
+#: includes/abilities/class-abilities.php:90
+msgid "Update Custom Schema"
+msgstr ""
+
+#: includes/abilities/class-abilities.php:91
+msgid "Saves the Custom Schema toggle and/or JSON source for one post. Enabled JSON must pass validation. The source replaces the saved source as a whole."
+msgstr ""
+
+#: includes/abilities/class-abilities.php:97
+msgid "Whether valid nodes are added to the Yoast graph. Omit to keep the saved value."
+msgstr ""
+
+#: includes/abilities/class-abilities.php:113
+msgid "Suggest Custom Schema"
+msgstr ""
+
+#: includes/abilities/class-abilities.php:114
+msgid "Uses the site AI connector to analyse the post and its Yoast graph, and proposes a complete Custom Schema source. Never saves anything."
+msgstr ""
+
+#: includes/abilities/class-abilities.php:121
+msgid "Unsaved post content to analyse instead of the saved content."
+msgstr ""
+
+#: includes/abilities/class-abilities.php:148
+#: includes/ai/class-schema-suggester.php:91
+#: includes/custom/class-integration-api.php:96
+msgid "The requested post does not support Custom Schema."
+msgstr ""
+
+#: includes/abilities/class-abilities.php:165
+msgid "AI schema suggestions are disabled on this site."
+msgstr ""
+
+#: includes/abilities/class-abilities.php:211
+msgid "Provide enabled, source or both."
+msgstr ""
+
+#: includes/abilities/class-abilities.php:300
+msgid "ID of a post that supports Custom Schema."
+msgstr ""
+
+#. translators: %s: comma-separated list of supported placeholders.
+#: includes/abilities/class-abilities.php:321
+msgid "Schema.org JSON: one object, a node array or an @graph object, without nested @context. Supported placeholders: %s."
+msgstr ""
+
+#: includes/abilities/class-abilities.php:403
+msgid "Types and properties stripped from the proposal because they need verifiable on-page evidence."
+msgstr ""
+
+#: includes/ai/class-schema-suggester.php:164
+msgid "The AI response could not be read. Try again."
+msgstr ""
+
+#: includes/ai/class-schema-suggester.php:386
+msgid "No AI connector with text generation is configured. Add one in Settings → Connectors."
+msgstr ""
+
+#: includes/ai/class-wp-ai-feature.php:37
+msgid "Custom Schema suggestions"
+msgstr ""
+
+#: includes/ai/class-wp-ai-feature.php:38
+msgid "Adds an \"Explore & extend schema\" button to the Schema Extended sidebar that proposes Schema.org nodes missing from the Yoast graph. Requires an AI connector with text generation."
 msgstr ""
 
 #: includes/custom/class-graph-parser.php:46
@@ -109,10 +201,6 @@ msgstr ""
 msgid "Enabled Custom Schema must pass validation before it can be saved through the integration API."
 msgstr ""
 
-#: includes/custom/class-integration-api.php:96
-msgid "The requested post does not support Custom Schema."
-msgstr ""
-
 #: includes/custom/class-integration-api.php:103
 msgid "You are not allowed to edit Custom Schema for this post."
 msgstr ""
@@ -122,109 +210,174 @@ msgstr ""
 msgid "Service scope: %s"
 msgstr ""
 
-#: src/features/custom/custom-schema-panel.js:25
+#: src/features/custom/custom-schema-panel.js:30
 msgid "Security system installation"
 msgstr ""
 
-#: src/features/custom/custom-schema-panel.js:59
+#: src/features/custom/custom-schema-panel.js:64
 msgid "Paste Schema.org JSON to get started."
 msgstr ""
 
-#: src/features/custom/custom-schema-panel.js:66
+#: src/features/custom/custom-schema-panel.js:71
 msgid "The JSON exceeds the allowed size."
 msgstr ""
 
 #. translators: %s: JSON parser error.
-#: src/features/custom/custom-schema-panel.js:78
+#: src/features/custom/custom-schema-panel.js:83
 msgid "Invalid JSON: %s"
 msgstr ""
 
-#: src/features/custom/custom-schema-panel.js:87
+#: src/features/custom/custom-schema-panel.js:92
 msgid "The root value must be an object, a node array or an @graph object."
 msgstr ""
 
-#: src/features/custom/custom-schema-panel.js:109
-#: src/features/custom/custom-schema-panel.js:126
+#: src/features/custom/custom-schema-panel.js:114
+#: src/features/custom/custom-schema-panel.js:131
 msgid "Only the Schema.org context is allowed."
 msgstr ""
 
-#: src/features/custom/custom-schema-panel.js:136
+#: src/features/custom/custom-schema-panel.js:141
 msgid "@graph must contain at least one node."
 msgstr ""
 
 #. translators: %d: maximum number of custom graph nodes.
-#: src/features/custom/custom-schema-panel.js:145
+#: src/features/custom/custom-schema-panel.js:150
 msgid "You may add at most %d nodes."
 msgstr ""
 
 #. translators: %d: one-based graph node number.
-#: src/features/custom/custom-schema-panel.js:159
+#: src/features/custom/custom-schema-panel.js:164
 msgid "Node %d must be a JSON object."
 msgstr ""
 
 #. translators: %d: one-based graph node number.
-#: src/features/custom/custom-schema-panel.js:173
+#: src/features/custom/custom-schema-panel.js:178
 msgid "Node %d contains a nested @context."
 msgstr ""
 
 #. translators: %d: one-based graph node number.
-#: src/features/custom/custom-schema-panel.js:184
+#: src/features/custom/custom-schema-panel.js:189
 msgid "Node %d contains an unknown placeholder."
 msgstr ""
 
 #. translators: %d: one-based graph node number.
-#: src/features/custom/custom-schema-panel.js:201
+#: src/features/custom/custom-schema-panel.js:206
 msgid "Node %d requires a valid @type."
 msgstr ""
 
 #. translators: %d: one-based graph node number.
-#: src/features/custom/custom-schema-panel.js:213
+#: src/features/custom/custom-schema-panel.js:218
 msgid "Node %d has an invalid @id."
 msgstr ""
 
-#: src/features/custom/custom-schema-panel.js:222
+#: src/features/custom/custom-schema-panel.js:227
 msgid "Every node must have a unique @id."
 msgstr ""
 
 #. translators: %d: number of valid custom graph nodes.
-#: src/features/custom/custom-schema-panel.js:233
+#: src/features/custom/custom-schema-panel.js:238
 msgid "The JSON is valid. Recognized nodes: %d."
 msgstr ""
 
-#: src/features/custom/custom-schema-panel.js:247
+#: src/features/custom/custom-schema-panel.js:252
 msgid "Custom Schema is enabled, but the JSON is empty. Nothing will be published."
 msgstr ""
 
-#: src/features/custom/custom-schema-panel.js:263
+#: src/features/custom/custom-schema-panel.js:268
 msgid "Custom Schema"
 msgstr ""
 
-#: src/features/custom/custom-schema-panel.js:266
+#: src/features/custom/custom-schema-panel.js:271
 msgid "Add custom nodes to the Yoast graph"
 msgstr ""
 
-#: src/features/custom/custom-schema-panel.js:269
+#: src/features/custom/custom-schema-panel.js:274
 msgid "Valid nodes will be added to the Yoast graph."
 msgstr ""
 
-#: src/features/custom/custom-schema-panel.js:270
+#: src/features/custom/custom-schema-panel.js:275
 msgid "The JSON remains saved but is not published."
 msgstr ""
 
-#: src/features/custom/custom-schema-panel.js:282
+#: src/features/custom/custom-schema-panel.js:289
 msgid "JSON Schema.org"
 msgstr ""
 
-#: src/features/custom/custom-schema-panel.js:283
+#: src/features/custom/custom-schema-panel.js:290
 msgid "Paste a single object, a node array or a complete @graph object. Yoast provides @context."
 msgstr ""
 
-#: src/features/custom/custom-schema-panel.js:294
+#: src/features/custom/custom-schema-panel.js:301
 msgid "Available placeholders: {{canonical}}, {{webpage_id}}, {{site_url}}, {{website_id}}, {{organization_id}}, {{primary_image_id}}."
 msgstr ""
 
-#: src/features/custom/custom-schema-panel.js:306
+#: src/features/custom/custom-schema-panel.js:313
 msgid "Clear configuration"
+msgstr ""
+
+#: src/features/custom/schema-suggestion.js:20
+msgid "Custom Schema proposal"
+msgstr ""
+
+#: src/features/custom/schema-suggestion.js:29
+msgid "Missing entities"
+msgstr ""
+
+#. translators: %s: comma-separated Schema.org types and properties.
+#: src/features/custom/schema-suggestion.js:45
+msgid "Removed from the proposal because they need verifiable on-page content: %s."
+msgstr ""
+
+#: src/features/custom/schema-suggestion.js:56
+msgid "The AI found nothing to add to the current graph."
+msgstr ""
+
+#: src/features/custom/schema-suggestion.js:62
+msgid "The proposal does not pass validation yet. You can apply it and fix it in the editor:"
+msgstr ""
+
+#: src/features/custom/schema-suggestion.js:75
+msgid "Current"
+msgstr ""
+
+#: src/features/custom/schema-suggestion.js:76
+msgid "(empty)"
+msgstr ""
+
+#: src/features/custom/schema-suggestion.js:79
+msgid "Proposed"
+msgstr ""
+
+#: src/features/custom/schema-suggestion.js:88
+msgid "Cancel"
+msgstr ""
+
+#: src/features/custom/schema-suggestion.js:95
+msgid "Replace JSON in the editor"
+msgstr ""
+
+#: src/features/custom/schema-suggestion.js:123
+msgid "The AI proposal could not be generated."
+msgstr ""
+
+#: src/features/custom/schema-suggestion.js:135
+msgid "Proposal applied. Review it and save the post to keep it."
+msgstr ""
+
+#: src/features/custom/schema-suggestion.js:150
+msgid "Exploring schema…"
+msgstr ""
+
+#: src/features/custom/schema-suggestion.js:151
+msgid "Explore & extend schema"
+msgstr ""
+
+#: src/features/custom/schema-suggestion.js:156
+msgid "Connect an AI provider with text generation to use suggestions."
+msgstr ""
+
+#: src/features/custom/schema-suggestion.js:161
+msgid "Connectors"
 msgstr ""
 
 #: src/features/service/service-panel.js:25
@@ -337,8 +490,4 @@ msgstr ""
 
 #: src/features/service/service-panel.js:153
 msgid "Enter one brand per line, for example Nice or BFT."
-msgstr ""
-
-#: src/index.js:16
-msgid "Schema Extended"
 msgstr ""

@@ -168,6 +168,54 @@
             ],
             "Schema Extended": [
                 "Schema Extended"
+            ],
+            "Custom Schema proposal": [
+                "Propozycja Custom Schema"
+            ],
+            "Missing entities": [
+                "Brakuj\u0105ce encje"
+            ],
+            "Removed from the proposal because they need verifiable on-page content: %s.": [
+                "Usuni\u0119to z propozycji, bo wymagaj\u0105 weryfikowalnej tre\u015bci na stronie: %s."
+            ],
+            "The AI found nothing to add to the current graph.": [
+                "AI nie znalaz\u0142o niczego do dodania do obecnego grafu."
+            ],
+            "The proposal does not pass validation yet. You can apply it and fix it in the editor:": [
+                "Propozycja nie przechodzi jeszcze walidacji. Mo\u017cesz j\u0105 zastosowa\u0107 i poprawi\u0107 w edytorze:"
+            ],
+            "Current": [
+                "Obecny"
+            ],
+            "(empty)": [
+                "(pusty)"
+            ],
+            "Proposed": [
+                "Proponowany"
+            ],
+            "Cancel": [
+                "Anuluj"
+            ],
+            "Replace JSON in the editor": [
+                "Zast\u0105p JSON w edytorze"
+            ],
+            "The AI proposal could not be generated.": [
+                "Nie uda\u0142o si\u0119 wygenerowa\u0107 propozycji AI."
+            ],
+            "Proposal applied. Review it and save the post to keep it.": [
+                "Zastosowano propozycj\u0119. Sprawd\u017a j\u0105 i zapisz wpis, aby j\u0105 zachowa\u0107."
+            ],
+            "Exploring schema\u2026": [
+                "Badanie schema\u2026"
+            ],
+            "Explore & extend schema": [
+                "Zbadaj i rozszerz schema"
+            ],
+            "Connect an AI provider with text generation to use suggestions.": [
+                "Pod\u0142\u0105cz dostawc\u0119 AI z generowaniem tekstu, aby korzysta\u0107 z propozycji."
+            ],
+            "Connectors": [
+                "Konektory"
             ]
         }
     }

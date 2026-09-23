@@ -60,3 +60,49 @@
 	line-height: 1.5;
 	overflow-wrap: anywhere;
 }
+
+.isudev-schema-suggestion__trigger {
+	display: grid;
+	gap: 8px;
+	justify-items: start;
+}
+
+.isudev-schema-suggestion__trigger .isudev-custom-schema__help {
+	margin: 0;
+}
+
+.isudev-schema-suggestion__analysis {
+	margin-top: 0;
+}
+
+.isudev-schema-suggestion__gaps {
+	margin: 0 0 16px;
+	padding-left: 20px;
+	list-style: disc;
+}
+
+.isudev-schema-suggestion__compare {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 16px;
+	margin-top: 16px;
+}
+
+.isudev-schema-suggestion__compare pre {
+	max-height: 420px;
+	margin: 0;
+	padding: 12px;
+	overflow: auto;
+	background: #f6f7f7;
+	font-size: 12px;
+	line-height: 1.5;
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+}
+
+.isudev-schema-suggestion__actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+	margin-top: 24px;
+}

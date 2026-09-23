@@ -9,6 +9,8 @@ declare( strict_types = 1 );
 
 namespace IsuDev\SchemaExtended;
 
+use IsuDev\SchemaExtended\Abilities\Abilities;
+use IsuDev\SchemaExtended\Ai\Schema_Suggester;
 use IsuDev\SchemaExtended\Custom\Meta_Fields as Custom_Meta_Fields;
 use IsuDev\SchemaExtended\Service\Meta_Fields;
 use WP_Screen;
@@ -53,12 +55,30 @@ final class Editor_Sidebar {
 				\array_unique(
 					\array_merge(
 						$asset['dependencies'],
-						[ 'wp-components', 'wp-data', 'wp-editor', 'wp-i18n', 'wp-plugins' ]
+						[ 'wp-api-fetch', 'wp-components', 'wp-data', 'wp-editor', 'wp-element', 'wp-i18n', 'wp-notices', 'wp-plugins', 'wp-url' ]
 					)
 				)
 			),
 			(string) $asset['version'],
 			true
+		);
+
+		$ai_enabled = Schema_Suggester::is_enabled();
+
+		\wp_add_inline_script(
+			self::HANDLE,
+			'window.isudevSchemaExtended = ' . \wp_json_encode(
+				[
+					'suggest' => [
+						'enabled'       => $ai_enabled,
+						// The support check runs only when the feature is on.
+						'hasProvider'   => $ai_enabled && Schema_Suggester::has_provider(),
+						'ability'       => Abilities::SUGGEST,
+						'connectorsUrl' => \admin_url( 'options-connectors.php' ),
+					],
+				]
+			) . ';',
+			'before'
 		);
 
 		\wp_set_script_translations(

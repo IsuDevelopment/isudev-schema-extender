@@ -1,3 +1,8 @@
+/**
+ * Internal dependencies
+ */
+import SchemaSuggestion from './schema-suggestion';
+
 const { Button, Notice, PanelBody, TextareaControl, ToggleControl } = window.wp.components;
 const { useDispatch, useSelect } = window.wp.data;
 const { __, sprintf } = window.wp.i18n;
@@ -276,6 +281,8 @@ const CustomSchemaPanel = () => {
 				<Notice status={ validation.status } isDismissible={ false }>
 					{ validation.message }
 				</Notice>
+
+				<SchemaSuggestion source={ source } onApply={ ( value ) => updateMeta( META.source, value ) } />
 
 				<TextareaControl
 					className="isudev-custom-schema__source"

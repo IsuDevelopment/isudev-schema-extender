@@ -79,3 +79,26 @@ The sidebar uses an inline SVG adapted from the MIT-licensed Material Icon Theme
 `@wordpress/primitives` for two SVG elements. Native JSX keeps the editor dependency graph smaller;
 the source attribution points to
 `https://github.com/material-extensions/vscode-material-icon-theme/blob/main/LICENSE`.
+
+## 15. The plugin owns its Custom Schema abilities
+Decision 11 kept automation outside the plugin. In practice every consumer (the editor AI button,
+MCP clients without WP Content Bridge) needed the same get/validate/update/suggest operations, so
+the plugin now registers them itself as thin adapters over `Integration_API`, marked
+`meta.mcp.public` for the MCP Adapter default server. WP Content Bridge keeps its own stricter
+`wpcb/*` tools on its own server; `isudev_schema_extended_mcp_public` lets a site hide the overlap.
+The minimum WordPress version is 7.1 so the Abilities and AI Client APIs need no guards.
+
+## 16. AI suggestions use the core AI Client, and never save
+The button calls `wp_ai_client_prompt()` from core, so it works with any configured connector and
+does not require the WordPress AI plugin. The model returns JSON (`as_json_response`) with the
+proposal as a string: an open schema for arbitrary nodes is not accepted by every provider's strict
+mode, and `Graph_Parser` validates the string anyway. Reviews, ratings, offers and prices are
+stripped (decision 7). The result only replaces the unsaved editor value; the editor saves it.
+The ability is annotated `readonly: false` because core maps readonly to GET and editor content does
+not fit a query string; `writes_performed: false` states the real behaviour.
+
+## 17. The WordPress AI plugin is an optional toggle only
+Its feature API is documented as experimental, so `Wp_Ai_Feature` only reports "enabled" and lives
+in its own file loaded behind `class_exists()`. Ability, prompt and UI never depend on it. The editor
+calls the REST run endpoint directly instead of `@wordpress/abilities`, which is a script module and
+would pull a module loader into this classic-script bundle for no functional gain.

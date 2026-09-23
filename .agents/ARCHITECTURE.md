@@ -17,7 +17,10 @@ autoload (Plugin Update Checker, admin/cron only), requires the classes and call
 | `init` | `Plugin::load_textdomain` | Load bundled PHP translations for non-WordPress.org installs |
 | `init` (100) | `Service\Meta_Fields::register` | Register private REST post meta after conventional CPT registration |
 | `init` (100) | `Custom\Meta_Fields::register` | Register Custom Schema toggle + JSON source after conventional CPT registration |
-| `enqueue_block_editor_assets` | `Editor_Sidebar::enqueue` | Load `build/index.js` + CSS |
+| `enqueue_block_editor_assets` | `Editor_Sidebar::enqueue` | Load `build/index.js` + CSS and `window.isudevSchemaExtended` |
+| `wp_abilities_api_categories_init` | `Abilities::register_category` | Register the `isudev-schema` category |
+| `wp_abilities_api_init` | `Abilities::register_abilities` | Register the four Custom Schema abilities |
+| `wpai_register_features` | `Wp_Ai_Integration::register_feature` | Add the suggestion toggle to the WordPress AI plugin, when active |
 | `plugins_loaded` (20) | `Plugin::register_yoast_integration` | Load graph code only if Yoast is active |
 
 The Yoast half is required lazily and guarded by `class_exists( Abstract_Schema_Piece )`, so the
@@ -101,5 +104,29 @@ validation. Reusable controls go to `src/components/`, never into a feature fold
 ## External integration
 
 `Custom\Integration_API` is the stable boundary for another plugin. It provides authorized read
-and update operations plus write-free validation. MCP or REST adapters belong outside this plugin
-and must not couple themselves to the private meta keys.
+and update operations plus write-free validation. Other plugins, including WP Content Bridge, must
+not couple themselves to the private meta keys.
+
+## Abilities and AI suggestions
+
+```
+Abilities (isudev-schema/*) ── permission: supported post type + edit_post
+  get / validate / update  → Custom\Integration_API
+  suggest                  → Ai\Schema_Suggester
+                               → post content + YoastSEO()->meta->for_post()->schema + current source
+                               → wp_ai_client_prompt()->as_json_response() → { analysis, gaps, proposed_source }
+                               → strip reviews/ratings/offers/prices → Graph_Parser::parse
+                               → writes_performed: false
+```
+
+Abilities are adapters only: storage and validation stay in `Custom\`. Each ability sets
+`meta.mcp.public` (filter `isudev_schema_extended_mcp_public`), which puts it on the MCP Adapter
+default server. WP Content Bridge keeps its own `wpcb/*` Custom Schema abilities on its own server.
+
+Editor flow: `SchemaSuggestion` → `runAbility()` POST `/wp-abilities/v1/abilities/<name>/run` with
+the unsaved content and JSON → modal → "Replace" calls `editPost( meta )`; the post save persists it.
+
+`Schema_Suggester::is_enabled()` is evaluated at run time, not registration time: with the
+WordPress AI plugin active, its loader calls `Wp_Ai_Feature::register()` on `init` (15) only when the
+feature is on; without it the feature is on. The filter `isudev_schema_extended_ai_suggestions_enabled`
+wins in both cases. `has_provider()` is a support check with no API call.
