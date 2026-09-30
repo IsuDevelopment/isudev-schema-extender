@@ -99,7 +99,6 @@ final class Schema_Suggester {
 
 		$builder = self::builder( self::user_prompt( $post, $content ?? $post->post_content, $source ?? Meta_Fields::get_source( $post_id ) ) )
 			->using_system_instruction( self::system_instruction() )
-			->using_temperature( 0.2 )
 			->as_json_response( self::response_schema() );
 
 		if ( \class_exists( RequestOptions::class ) ) {

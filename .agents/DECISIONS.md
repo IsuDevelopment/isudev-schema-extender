@@ -93,7 +93,8 @@ The button calls `wp_ai_client_prompt()` from core, so it works with any configu
 does not require the WordPress AI plugin. The model returns JSON (`as_json_response`) with the
 proposal as a string: an open schema for arbitrary nodes is not accepted by every provider's strict
 mode, and `Graph_Parser` validates the string anyway. Reviews, ratings, offers and prices are
-stripped (decision 7). The result only replaces the unsaved editor value; the editor saves it.
+stripped (decision 7). The result only replaces the unsaved editor value; the editor saves it. No
+fixed temperature is sent, so providers can use models that reject that optional parameter.
 The ability is annotated `readonly: false` because core maps readonly to GET and editor content does
 not fit a query string; `writes_performed: false` states the real behaviour.
 

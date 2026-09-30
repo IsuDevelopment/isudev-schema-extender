@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Removed the fixed AI temperature parameter so connectors can use models that reject it.
+
 ## 0.4.0 — 2026-09-23
 
 - Required WordPress 7.1.
